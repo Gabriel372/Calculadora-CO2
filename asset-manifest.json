@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/calculadora/static/css/main.ace06a3c.css",
+    "main.js": "/calculadora/static/js/main.9b692efa.js",
+    "static/js/787.94ee466b.chunk.js": "/calculadora/static/js/787.94ee466b.chunk.js",
+    "static/media/terraAzulLogo.png": "/calculadora/static/media/terraAzulLogo.5bd89f26590974547b43.png",
+    "index.html": "/calculadora/index.html",
+    "main.ace06a3c.css.map": "/calculadora/static/css/main.ace06a3c.css.map",
+    "main.9b692efa.js.map": "/calculadora/static/js/main.9b692efa.js.map",
+    "787.94ee466b.chunk.js.map": "/calculadora/static/js/787.94ee466b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ace06a3c.css",
+    "static/js/main.9b692efa.js"
+  ]
+}
