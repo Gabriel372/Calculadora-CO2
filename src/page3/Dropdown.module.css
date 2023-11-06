@@ -1,0 +1,73 @@
+.container{
+    max-height: 250px;   
+    }
+    .dropCollapse{display: none;}
+    .dropShow{display: block; 
+    position: absolute;
+    }
+    .btnClick{
+    height: auto;    
+    width: auto;
+    margin: auto  ;  
+    line-height: 20px;
+    padding: 0;
+    display: block;
+    background-color: white;
+    color: #0693e3;
+    border: none;
+    }
+    .btnClick>*{
+    font-size: 18px;    
+   position: relative;
+   top: 2px;
+}
+    .btnClose{
+    display: inline-block;
+    background-color: white;
+    color: #0693e3;
+    border: none;
+    margin-bottom: 0;
+    line-height: 20px;
+    padding-right: 0;
+    padding-left: 0;
+    height: auto;    
+    width: auto;
+    margin-left: 10px;
+    
+}
+    .ul{
+    text-align: left;    
+    padding-top: 5px;    
+    list-style: none;    
+    padding: 0;
+    position: relative; 
+    left: -10px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    margin-bottom: 0;
+    display: block;
+    background-color: white;
+
+    }
+    .li{
+    color: #0693e3;    
+    margin-top: 10px;    
+    display: block;
+    margin-right: 0;
+    /* font-weight: 50px; */
+    }
+    .li:hover{
+    color: black;}
+ .btnClose:hover{
+    background-color: white;    
+    }
+    .btnClick:hover{
+        background-color: white;  
+        color: black;  
+        }
+
+    @media (max-width: 500px) {
+    .btnClick{
+    font-size: 12px;  }   
+    }

@@ -1,0 +1,17 @@
+.container{
+display: flex;
+justify-content: center;
+/* align-items: center; */
+margin-top: 15px;
+width: 100%;
+height: 100%;
+}
+.spinner{
+font-size: 30px;
+color: rgb(39, 121, 214);
+animation: spin 1s linear infinite;
+}
+@keyframes spin {
+0%{rotate: 0deg;}
+100%{rotate: 360deg;}
+}

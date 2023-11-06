@@ -1,0 +1,57 @@
+.container{
+max-width: 1100px;
+height: 700px;
+margin: auto;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+flex-direction: column;
+} 
+.squareLogin{
+max-width: 550px;
+border: 1px solid gray;    
+display: block;
+padding: 15px;
+border-radius: 8px;
+}
+.input{
+width: 100%;    
+box-sizing: border-box;
+height: 30px;
+font-size: 18px;
+margin-bottom: 15px;
+}
+.btnAcces{
+width: 200px;    
+height: 30px;
+background-color: rgb(39, 121, 214);
+border: 1px solid rgb(39, 121, 214);
+color: white;
+border-radius: 5px;
+font-size: small;
+align-self: center;
+cursor: pointer;
+margin-bottom: 15px;
+}
+.btnAcces:hover{
+background-color: blue;    
+}
+h3{
+margin-top: 0;    
+}
+.btnRegister{
+background-color: rgb(48, 167, 48);
+border: 1px solid rgb(48, 167, 48);
+display: block;
+margin: auto;
+width: 200px;    
+
+}
+.btnRegister:hover{
+background-color: rgb(11, 122, 11);
+}
+
+/* p{
+margin-top: 5px;
+    margin-bottom: 5px;
+} */
