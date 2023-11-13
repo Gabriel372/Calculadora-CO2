@@ -8,14 +8,16 @@ top: 0;
 display: flex;
 justify-content: center;
 align-items: center ;
+z-index: 3;
+
 }
 .modalOff{
 display: none;
 }
 
-.square{
+.squareDel{
 border: 1px solid gray;   
-max-width: 300px; 
+/* max-width: 300px;  */
 border-radius: 5px;
 position: relative;
 background-color: white;
@@ -30,5 +32,7 @@ margin-right: 10px;
 .btnYes:hover{
 background-color: green;
 }
-
+.h4ModDel{
+margin:10px;    
+}
 

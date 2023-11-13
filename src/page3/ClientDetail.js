@@ -1,15 +1,11 @@
-// import style from './ClientDetail.module.css'
-// import Modal from './Modal';
-// // import { useState,useEffect } from 'react'
-// // import Modal from './Modal'
-// // import NavbarLoged from '../page3/NavbarLoged';
-// // import Dropdown from '../page3/Dropdown'
+import style from './ClientDetail.module.css'
+
 function ClientDetail(props) {
     
     const Convert = (any) => { const [year, month, day] = any.split('-');
     const DateConverted = `${day}/${month}/${year}`; return DateConverted; }
-    
-    return (<div>
+    return (<div className={style.clientCard}>
+     <div>
     <p>Cpf: {props.client.cpf}</p><p> Nome: {props.client.nome}</p><p>Projeto: {props.client.projeto}</p>
     <p>Data de cadastro: {Convert(props.client.data)}</p>
     <p>Email: {props.client.email}</p>
@@ -21,8 +17,8 @@ function ClientDetail(props) {
     <p>Titular de água cpf: {props.client.titularAguaCpf}</p>
     <p>Titular de energia cpf: {props.client.titularEnergiaCpf}</p>
     <p>Titular de gás cpf: {props.client.titularGasCpf}</p>
-
-<div>
+    </div>   
+<div className={style.emition}>
     <h4>Emissões</h4>
 <p>Ano: {props.client.emissoes.agua.ano}</p>
 <p>Tipo de Emissao: Água</p>

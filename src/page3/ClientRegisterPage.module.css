@@ -21,6 +21,12 @@
     height: 30px;
     font-size: 18px;
     }
+    .inputMarginT{
+    margin-top: 13px;    
+    }
+    .inputMarginB{
+    margin-bottom: 5px;    
+    }
     button{
     width: 120px;    
     width: 200px;    
@@ -62,4 +68,14 @@ max-width: 180px;
 @media (max-width: 500px) {
 label{font-size: 16px;  }  
       }
-
+.msgVisible{
+color: green;
+font-size: 18px;
+    background-color: rgb(174, 238, 174);    
+border-radius: 4px;
+border: 1px solid green;
+visibility: visible;
+}
+.msgHidden{
+visibility: hidden;    
+}

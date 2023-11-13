@@ -3,21 +3,7 @@ import NavbarLoged from './NavbarLoged'
 import { useState,useContext } from 'react';
 import { ApiContext } from '../context/ApiContext'
 
-// import ClientManager from './ClientManager'
-
-// import { useNavigate } from "react-router-dom";
-// import { useLocation } from 'react-router-dom';
-// import ClientRegistered from './ClientRegistered';
-// import LoginPage from '../page1/LoginPage';
-
 function ClientRegisterPage() {
-
-//*** PEGAR ID P/ CAPURAR TODOS OS CLIENTES DA API
-
-// const navigate = useNavigate();
-// const {state} = useLocation();
-// const { admLoged } = state || {};
-//true = deu certo o login
 
 const [Population,setPopulation] = useState('')   
 const [T_gascpf,setT_gascpf] = useState('')   
@@ -37,9 +23,12 @@ const [Cons_eletric,setCons_eletric] = useState('')
 const [Cons_water,setCons_water] = useState('')
 const [Gen_waste,setGen_waste] = useState('')
 const { Admincontext } = useContext(ApiContext);
+const [InterruptMsg,setInterruptMsg] = useState(false)
+
 // const [Id,setId] = useState('') //id gerado por api
 
 const registerClick = () => {
+// console.log(JSON.parse(sessionStorage.getItem('admStorage')));
 if (Population && T_gascpf && M_gas && T_watercpf && M_water && T_cpf && 
 M_energy && Phone && Email && Adress && Cpf && M_energy && Phone && Email 
 && Adress && Cpf && Name && Project && Data && Cons_eletric && Cons_water && Gen_waste) {
@@ -48,9 +37,10 @@ const clientRegister = {data:Data,projeto:Project,nome:Name,cpf:Cpf,endereco:Adr
 telefone:Phone,matriculaDeEnergia:M_energy,titularEnergiaCpf:T_cpf,matriculaDeAgua:M_water,
 titularAguaCpf:T_watercpf,matriculaDeGas:M_gas,titularGasCpf:T_gascpf,habitantes:Population } 
 
+const admStorage = JSON.parse(sessionStorage.getItem('admStorage'))
 console.log(clientRegister);
-fetch(`http://191.252.38.35:8080/api/clientes/salvar?email=${Admincontext.email}&senha=${Admincontext.senha}`,{
-// fetch("http://localhost:5000/alladmins",{    
+
+fetch(`http://191.252.38.35:8080/api/clientes/salvar?email=${admStorage.email}&senha=${admStorage.senha}`,{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify(clientRegister) } )
@@ -60,10 +50,11 @@ throw new Error(`Erro na solicitação: ${response.statusText}`);
 }
 return response.json();
 })
-.then((data) =>  {/* setId(data.id)*/;setPopulation('');setT_gascpf('');setM_gas('');
+.then((data) =>  {setInterruptMsg(true);setTimeout(() => setInterruptMsg(false), 10000);
+setPopulation('');setT_gascpf('');setM_gas('');setName('')
 setT_watercpf('');setT_cpf('');setT_cpf('');setM_energy('');setPhone('');
 setEmail('');setAdress('');setCpf('');setProject('');setCons_water('');
-setCons_eletric('');setGen_waste('');setM_water(''); console.log(`json de clientes`,data);})
+setCons_eletric('');setGen_waste('');setM_water(''); console.log(`cliente cadastrado:`,data);})
 .catch((error) => console.log('erro ao registrar cliente',error)) 
 //POST EMISSOES
  const [Year, Month, Day] = Data.split('-');
@@ -154,16 +145,16 @@ return <div> <NavbarLoged/>
 <input  type="number" placeholder='Código do cliente / gás' onChange={changeM_gas} value={M_gas}/>
 <input type="number" placeholder='Titular de gás do cpf' onChange={changeT_gascpf} value={T_gascpf}/>
 <input type="number" placeholder='Nº de habitantes na residência' onChange={changePopulation} value={Population}/>
-<div><br/></div>
-<input type="number" placeholder='Consumo de energia elétrica' onChange={changeCons_eletric} value={Cons_eletric}/>
+{/* <div><hr/></div> */}
+<input className={style.inputMarginT} type="number" placeholder='Consumo de energia elétrica' onChange={changeCons_eletric} value={Cons_eletric}/>
 <input type="number" placeholder='Consumo de água' onChange={changeCons_water} value={Cons_water}/>
-<input type="number" placeholder='Geração de residuos' onChange={changeGen_waste} value={Gen_waste}/>
+<input className={style.inputMarginB} type="number" placeholder='Geração de residuos' onChange={changeGen_waste} value={Gen_waste}/>
+<p className={InterruptMsg ? style.msgVisible : style.msgHidden}>Cliente cadastrado com successo !</p>
 <button type='button' onClick={registerClick}>Enviar</button>
 <button className={style.btnView} type='button'>Ver resultado</button>
 
 </div>
-{/* <ClientManager/> */}
-{/* <ClientRegistered Id={Id}/> */}
+
 </div>
 </div>
 }

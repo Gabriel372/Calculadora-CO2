@@ -8,16 +8,15 @@ const [Boxemition,setBoxemition] = useState([])
 const [Boxeletric,setBoxeletric] = useState([]) 
 const [Boxwater,setBoxwater] = useState([]) 
 const [Boxresidue,setBoxresidue] = useState([]) 
-
+const admStorage = JSON.parse(sessionStorage.getItem('admStorage'))
 
 const navigate = useNavigate();
 
 useEffect(() => {
-const AdmJson = {email:"marcos@gmail.com",senha:"1234567",nome:"Marcos Philippe"}
-fetch('http://191.252.38.35:8080/api/emissoes/lista',{
+fetch('http://191.252.38.35:8080/api/emissoes/listar',{
 method:"POST",
 headers:{"Content-Type":"application/json"},
-body:JSON.stringify(AdmJson) })
+body:JSON.stringify(admStorage) })
 .then((response) => response.json())
 .then((data) => {setBoxemition(data); })
 .catch((error) => { console.log('erro', error);  });

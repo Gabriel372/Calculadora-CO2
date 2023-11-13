@@ -13,7 +13,6 @@ const [Boxadmin,setBoxadmin] = useState([])
 const navigate = useNavigate();
 const { setAdmincontext } = useContext(ApiContext);
 const [Interrupterspin,setInterrupterspin] = useState(false) 
-
 // const { Admincontext,setAdmincontext } = useContext(ApiContext);
 useEffect(() => {
     const Adm = {email:"marcos@gmail.com",senha:"1234567",nome:"Marcos Philippe"}
@@ -27,31 +26,23 @@ useEffect(() => {
       .catch((error) => {console.error('Falha ao receber administradores:', error);
       }); }, []);
 
-//   usando o JSON de administradores.
-
-// const AdmLogin = { email: "marcos@gmail.com",
-// senha: "1234567",
-// nome: "Marcos Philippe" }
-
-// "email": "marcos7@gmail.com",
-//         "senha": "1234567",
-//         "nome": "Marcos Philippe"
-//resposta ok do sev > {timestamp: '2023-10-12T19:18:09.982+00:00', status: 400, error: 'Bad Request', path: '/api/clientes/lista'}
-
 const accessClick = () => {
     if (EmailLog && PasswordLog) {
-      const AdmLogin = { email: EmailLog, senha: PasswordLog, nome: "a" };
-  
-      const admisOk = Boxadmin.find(
-        (admin) => admin.email === EmailLog && admin.senha === PasswordLog
-      );
-  
+      // const AdmLogin = { email: EmailLog, senha: PasswordLog, nome: "a" };
+  const admisOk = Boxadmin.find(
+    (admin) => admin.email === EmailLog && admin.senha === PasswordLog );
+
+  const admJson = {email:admisOk.email,senha:admisOk.senha,nome:admisOk.nome}
+
       if (admisOk) {
+        sessionStorage.setItem('admStorage',JSON.stringify(admJson))
+        
+        setAdmincontext(admJson)
         setInterrupterspin(true)
         fetch("http://191.252.38.35:8080/api/administradores/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(AdmLogin),
+          body: JSON.stringify(admJson),
         })
           .then((response) => {
             if (!response.ok) {

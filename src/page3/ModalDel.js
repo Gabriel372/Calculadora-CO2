@@ -1,31 +1,28 @@
-import style from './Modal.module.css'
+import style from './ModalDel.module.css'
 import { useState,useEffect } from 'react'
 
-function Modal(props) {
+function ModalDel(props) {
 const [Show,setShow] = useState(false) //cx de clientes
 // const { SenData } = props;
 
 useEffect(() => {
-    setShow(props.Interruptmod.ModalActive)
-    // console.log(props.Interruptmod);
-// console.log(Show);
-    // props.OnReceive(Show);
-},[props.Interruptmod] )
+    setShow(props.ModInterruptDel.ModalActive)
+},[props.ModInterruptDel] )
 
 const clickYes = () => {
     setShow(false) ;//fexar modal
-    props.ReceiveModal(false,false) //modal active ? , delete ? 
+    props.ReceiveDelMod(false,false) 
 }
 
 const clickNot = () => {
     setShow(false); 
-    props.ReceiveModal(false,true) //modal active ? , delete ? DELETE FALSE E TRUE ESTA INVERTIDO
+    props.ReceiveDelMod(false,true) 
 }
 
 
 return <div className={`${Show ? style.modalOn : style.modalOff}`}>
- <div className={style.square}> 
- <h4>Deseja deletar esse cliente ?</h4>   
+ <div className={style.squareDel}> 
+ <h4 className={style.h4ModDel}>Deseja deletar esse cliente ?</h4>   
  <button  className={style.btnNot} onClick={clickYes}>Não</button>
  <button  className={style.btnYes} onClick={clickNot}>Sim</button>
  </div>  
@@ -33,4 +30,4 @@ return <div className={`${Show ? style.modalOn : style.modalOff}`}>
 
 }
 
-export default Modal
+export default ModalDel
