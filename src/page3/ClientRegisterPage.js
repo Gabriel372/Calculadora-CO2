@@ -1,7 +1,7 @@
 import style from './ClientRegisterPage.module.css'
 import NavbarLoged from './NavbarLoged'
-import { useState,useContext } from 'react';
-import { ApiContext } from '../context/ApiContext'
+import { useState } from 'react';
+// import { ApiContext } from '../context/ApiContext'
 
 function ClientRegisterPage() {
 
@@ -22,7 +22,7 @@ const [Data,setData] = useState('')
 const [Cons_eletric,setCons_eletric] = useState('')
 const [Cons_water,setCons_water] = useState('')
 const [Gen_waste,setGen_waste] = useState('')
-const { Admincontext } = useContext(ApiContext);
+// const { Admincontext } = useContext(ApiContext);
 const [InterruptMsg,setInterruptMsg] = useState(false)
 
 // const [Id,setId] = useState('') //id gerado por api
@@ -59,12 +59,14 @@ setCons_eletric('');setGen_waste('');setM_water(''); console.log(`cliente cadast
 //POST EMISSOES
  const [Year, Month, Day] = Data.split('-');
 console.log(Year,Month,Day);
-const emEnergy = {tipoEmissao:"energiaeletrica",nome:Name,cpf:Cpf,mes:Month,ano:Year,consumo:Cons_eletric} ; 
-const emWater = {tipoEmissao:"agua",nome:Name,cpf:Cpf,mes:Month,ano:Year,consumo:Cons_water}  ;
-const emResidue = {tipoEmissao:"residuos",nome:Name,cpf:Cpf,mes:Month,ano:Year,consumo:Gen_waste};  
+const emEnergy = {tipoEmissao:"energiaeletrica",nome:Name,cpf:Cpf,mes:Month,ano:Year,gasto:Cons_eletric,consumo:0 } ; //gasto precisa ser preenchido
+const emWater = {tipoEmissao:"agua",nome:Name,cpf:Cpf,mes:Month,ano:Year,gasto:Cons_water,consumo:0}  ;
+const emResidue = {tipoEmissao:"residuos",nome:Name,cpf:Cpf,mes:Month,ano:Year,gasto:Gen_waste,consumo:0};  
+//{"tipoEmissao":"", "nome":"", "cpf":"", "mes":"", "ano":"", "gasto":"", "consumo":""}
 
 
-    fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${Admincontext.email}&senha=${Admincontext.senha}`,{
+
+    fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${admStorage.email}&senha=${admStorage.senha}`,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(emEnergy) } )
@@ -72,12 +74,12 @@ const emResidue = {tipoEmissao:"residuos",nome:Name,cpf:Cpf,mes:Month,ano:Year,c
     if (!response.ok) {
     throw new Error(`Erro na solicitação: ${response.statusText}`); }
     return response.json(); })
-    .then((data) =>  { setM_energy('') ;
+    .then((data) =>  { setM_energy('') ;setData('');
     console.log('sucesso no post',data); 
     })
     .catch((error) => console.log('erro ao postar emissao',error))
 
-    fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${Admincontext.email}&senha=${Admincontext.senha}`,{
+    fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${admStorage.email}&senha=${admStorage.senha}`,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(emWater) } )
@@ -91,7 +93,7 @@ const emResidue = {tipoEmissao:"residuos",nome:Name,cpf:Cpf,mes:Month,ano:Year,c
     })
     .catch((error) => console.log('erro ao postar emissao',error))
 
-    fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${Admincontext.email}&senha=${Admincontext.senha}`,{
+    fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${admStorage.email}&senha=${admStorage.senha}`,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(emResidue) } )
@@ -99,7 +101,7 @@ const emResidue = {tipoEmissao:"residuos",nome:Name,cpf:Cpf,mes:Month,ano:Year,c
     if (!response.ok) {
     throw new Error(`Erro na solicitação: ${response.statusText}`); }
     return response.json(); })
-    .then((data) =>  { setGen_waste('') ;setData('');setName('');
+    .then((data) =>  { setGen_waste('') ;setName('');
     console.log('sucesso no post',data);
     // navigate('/ClientRegistered') 
     })
@@ -149,7 +151,7 @@ return <div> <NavbarLoged/>
 <input className={style.inputMarginT} type="number" placeholder='Consumo de energia elétrica' onChange={changeCons_eletric} value={Cons_eletric}/>
 <input type="number" placeholder='Consumo de água' onChange={changeCons_water} value={Cons_water}/>
 <input className={style.inputMarginB} type="number" placeholder='Geração de residuos' onChange={changeGen_waste} value={Gen_waste}/>
-<p className={InterruptMsg ? style.msgVisible : style.msgHidden}>Cliente cadastrado com successo !</p>
+<p className={InterruptMsg ? style.msgVisible : style.msgHidden}>Cadastrado com successo !</p>
 <button type='button' onClick={registerClick}>Enviar</button>
 <button className={style.btnView} type='button'>Ver resultado</button>
 

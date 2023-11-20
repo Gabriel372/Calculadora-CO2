@@ -1,0 +1,127 @@
+/* *{text-align: start;} */
+.modalOn{
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    position: fixed;
+    width: 100% ;
+    height: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    z-index: 2;
+    }
+    .modalOff{
+    display: none;
+    }
+    .squareEdit{
+    margin: 0 4px 0 4px;    
+    border: 2px solid black;   
+    max-width: 480px; 
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    position: relative;
+    bottom: 150px;
+    background-color: white;
+    max-height: 800px;
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+    .btnNot{
+    margin-right: 10px;
+    
+    }
+    .btnYes:hover{
+    background-color: green;
+    }
+     .labelModEdit{display: flex;
+    font-size: 17px;
+    /* text-align: left; */
+    justify-content: space-between;
+    color: black;
+    }
+    .labelModEdit:hover{background-color: rgb(247, 247, 247);}
+    /* .inputModEdit{
+        display:block;
+    max-width: 220px;
+    font-size: 17px;
+margin: 0 0 5px;
+    height: 22px;
+    color: rgb(185, 185, 185);
+}  */
+.inptEdtEmt{
+height: 23px;
+max-width: 190px;
+}
+
+.btnClose{
+background-color: white;
+color: rgb(39, 121, 214);;
+border: none;
+width: 35px;
+font-size: 25px;
+display: inline;
+}
+.btnClose:hover{background-color: white;
+color: blue;
+}
+.h2ModEmit{display: inline;
+margin: 0 0 10px 0;
+}
+.divHeader{display: flex;
+justify-content: space-between;
+}
+.msgVisible{
+    color: green;
+    font-size: 18px;
+        background-color: rgb(174, 238, 174);    
+    border-radius: 4px;
+    border: 1px solid green;
+    visibility: visible;
+    }
+    .msgHidden{
+    visibility: hidden;    
+    }
+.btnUpdate{
+margin: 5px 0 5px 0;    
+}
+.pModEmit{display: flex; 
+justify-content: space-between;
+}
+.selEmYear{
+max-width: 150px;    
+width: 100%;
+/* min-height: 500px; */
+}
+.optEdtEmtYear{
+height: 300px;
+
+
+}
+
+.selEmMonth{
+    max-width: 150px;    
+    width: 100%;    }
+    .pModText{
+        text-align: left;    
+        }
+.divInpEdtEmt{
+display: flex;
+justify-content: space-between;
+flex-direction: row;
+} 
+/* .divSelEmt{
+margin: 0 20px 15px 0;    
+} */
+
+
+
+@media (max-width: 500px) {
+    .inputModEdit {
+        max-width: 140px;
+    }
+    .mgInput{
+        margin-left: 10px;    
+        }   
+  }

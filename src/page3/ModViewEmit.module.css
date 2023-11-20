@@ -1,0 +1,146 @@
+/* *{text-align: start;} */
+.modalOn{
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    position: fixed;
+    width: 100% ;
+    height: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    z-index: 2;
+    }
+    .modalOff{
+    display: none;
+    }
+    .squareModVwEdt{
+    margin: 0 4px 0 4px;    
+    border: 2px solid black;   
+    max-width: 1100px; 
+    /* width: 100%; */
+    border: 1px solid gray;
+    border-radius: 10px;
+    position: relative;
+    background-color: white;
+    max-height: 600px;
+padding: 0 7px 7px 7px;
+/* overflow: scroll; */
+overflow-x: hidden; 
+overflow-y: auto; 
+    }
+    .btnNot{
+    margin-right: 10px;
+    
+    }
+    .btnYes:hover{
+    background-color: green;
+    }
+     .labelModEdit{display: flex;
+    font-size: 17px;
+    /* text-align: left; */
+    justify-content: space-between;
+    color: black;
+    }
+    .labelModEdit:hover{background-color: rgb(247, 247, 247);}
+    .inputModEdit{
+        /* display:block; */
+    max-width: 220px;
+    font-size: 17px;
+margin: 0 0 5px;
+    height: 22px;
+    /* color: rgb(185, 185, 185); */
+} 
+.btnCloseModVwEmt{
+background-color: white;
+color: rgb(39, 121, 214);;
+border: none;
+width: 35px;
+font-size: 25px;
+display: inline;
+margin: 0 0 0 15px;
+}
+.btnCloseModVwEmt:hover{background-color: white;
+color: blue;
+}
+.h2ModEmit{display: inline;
+margin: 0 0 10px 0;
+}
+.divHeader{display: flex;
+justify-content: space-between;
+}
+.msgVisible{
+    color: green;
+    font-size: 18px;
+        background-color: rgb(174, 238, 174);    
+    border-radius: 4px;
+    border: 1px solid green;
+    visibility: visible;
+    }
+    .msgHidden{
+    visibility: hidden;    
+    }
+.btnEditEmWater{
+margin: 5px 0 5px 0;    
+width: 80px;
+}
+.pModEmit{display: flex; 
+justify-content: space-between;
+}
+.selEmYear{
+max-width: 150px;    
+width: 100%;
+}
+.selEmMonth{
+    max-width: 150px;    
+    width: 100%;    }
+    .pModText{
+        text-align: left;    
+        }
+.divSelEmt{
+margin: 0 20px 15px 0;    
+}
+
+.divGridMdVwemt{
+border: 1px solid gray;
+border-radius: 5px;
+padding: 7px;
+max-width: 150px;
+}
+.divGridVwEmt{
+display: grid;
+grid-template-columns: auto auto auto auto ;
+grid-gap: 5px;
+}
+@media (max-width: 500px) {
+    .inputModEdit {
+        max-width: 140px;
+    }
+.divGridVwEmt{
+display: grid;    
+grid-template-columns: auto auto auto ;
+}
+.squareModVwEdt{
+max-height: 700px;    
+}
+
+  }
+
+
+  /* .ul{
+    display: grid;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template-columns: auto  auto ;
+    }
+@media (max-width: 800px) {
+.ul{grid-template-columns:auto ;  }  }    
+.li{
+    padding: 7px;    
+    text-align: left;    
+    list-style: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    list-style: none; 
+    margin-right: 0;
+    } */

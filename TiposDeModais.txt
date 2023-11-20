@@ -1,0 +1,17 @@
+tipos de modal
+
+MODAL SOBRE EMISSAO
+MdEdtEmtResd = editar emissao de residuos
+MdEdtEmtWater = editar emissao agua
+MdEdtEmtEletcEn = editar emissao agua
+ModViewEmit = visualizar emissoes do cliente
+ModInsertEmt = inserir emissoes
+
+MODAL SOBRE CLIENTE
+ModalDel = deletar cliente	
+ModalEdit =aditar cliente
+
+
+
+ 
+
