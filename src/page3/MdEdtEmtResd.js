@@ -1,17 +1,15 @@
 import style from './MdEdtEmtResd.module.css'
 import { AiOutlineClose } from 'react-icons/ai';
-import { useState,useEffect } from 'react' //AiOutlineClose
+import { useState,useEffect } from 'react' 
 
 function MdEdtEmtResd(props) {
 
-// const [Client,setClient] = useState({...props.ClientView}) 
 const [Cons_Resd,setCons_Resd] = useState('')
 const [Year,setYear] = useState(props.ResdEdt.ano)
 const [Month,setMonth] = useState(props.ResdEdt.mes)
 const [InterruptMsg,setInterruptMsg] = useState(false)
 
 useEffect(() => {
-  // setClient({...props.ClientView})
   setYear(props.ResdEdt.ano)
   setMonth(props.ResdEdt.mes)
   }, [props.IntrruptMdEdtEmt,props.ClientView,props.ResdEdt]);
@@ -20,7 +18,6 @@ const clickClose = () => {
 setYear('')
 setMonth('')
 setCons_Resd('')
-// setCons_water('')
 props.setIntrrptMdEdtEmtResd(false); 
 }   
 

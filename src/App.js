@@ -11,8 +11,10 @@ import ReportPage from './page5/ReportPage';
 import EletricEmiss from './page5/EletricEmiss'
 import WaterEmiss from './page5/WaterEmiss'
 import ResidueGen from './page5/ResidueGen'
-//BrowserRouter
-
+import SearchPrjctClnt from './page5/SearchPrjctClnt';
+import SearchPrjctBigTax from './page5/SearchPrjctBigTax';
+import SearchPrjctClntMnth from './page5/SearchPrjctClntMnth';
+git
 function App() {
   return (
     <MyProvider>
@@ -31,26 +33,16 @@ function App() {
 <Route  path='/EletricEmiss' element={<EletricEmiss/>}/>
 <Route  path='/WaterEmiss' element={<WaterEmiss/>}/>
 <Route  path='/ResidueGen' element={<ResidueGen/>}/>
+<Route  path='/SearchPrjctClnt' element={<SearchPrjctClnt/>}/>
+<Route  path='/SearchPrjctBigTax' element={<SearchPrjctBigTax/>}/>
+<Route  path='/SearchPrjctClntMnth' element={<SearchPrjctClntMnth/>}/>
 
 </Routes>
-{/* <LoginPage/> */}
-{/* <RegisterAdmPage/> */}
 </BrowserRouter>
   </div>  
   </MyProvider>
   )
 }
-// Host: 
-
-// ftp.sistemaco2.educacao.ws
-
-// Usuário de FTP
-// sistemaco2educac1
-// Senha:
-// Flaviocurado123#
-
-
-
 
 export default App;
 

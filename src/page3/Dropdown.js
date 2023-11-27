@@ -1,5 +1,5 @@
 import style from './Dropdown.module.css';
-import { IoIosArrowDown } from 'react-icons/io';//IoIosArrowUp
+import { IoIosArrowDown } from 'react-icons/io';
 import { IoIosArrowUp } from 'react-icons/io';
 import { useState } from 'react';
 import { Link } from "react-router-dom"
@@ -12,7 +12,6 @@ const Click = () => {setInt(!interrupt) }
 
 return (<div className={style.container}>
 <button className={style.btnClick} onClick={Click}>CLIENTES {interrupt ?<IoIosArrowUp className={style.ArrowUp}/>:<IoIosArrowDown/>}</button> 
-{/* <button className={style.btnClose} onClick={Close} >X</button> */}
 <div className={`${interrupt ? style.dropShow : style.dropCollapse}`}>
 <ul className={style.ul}>
 <li className={style.li}><Link to='/ClientRegisterPage'>REGISTRAR</Link></li>

@@ -4,7 +4,6 @@ function EmtDel({DelEmtOfClient,setDelEmtOfClient}) {
     
 useEffect(() => {
 if (DelEmtOfClient) {
-// console.log(DelEmtOfClient); 
 DelEmtOfClient.emissoes.agua.map(agua => {
 fetch(`http://191.252.38.35:8080/api/emissoes/${agua.id}`,{
   method:"DELETE", })

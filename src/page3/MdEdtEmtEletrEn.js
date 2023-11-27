@@ -1,12 +1,12 @@
 import style from './MdEdtEmtEletrEn.module.css'
 import { AiOutlineClose } from 'react-icons/ai';
-import { useState,useEffect } from 'react' //AiOutlineClose
+import { useState,useEffect } from 'react' 
 
 function MdEdtEmtEletrEn(props) {
 
 const [Client,setClient] = useState({...props.ClientView}) 
 const [Cons_EletrEn,setCons_EletrEn] = useState('')
-const [Year,setYear] = useState(props.EltrEnEdt.ano)//props.EltrEnEdt.emissoes.energiaeletrica.ano
+const [Year,setYear] = useState(props.EltrEnEdt.ano)
 const [Month,setMonth] = useState(props.EltrEnEdt.mes)
 const [InterruptMsg,setInterruptMsg] = useState(false)
 
@@ -20,7 +20,6 @@ const clickClose = () => {
 setYear('')
 setMonth('')
 setCons_EletrEn('')
-// setCons_water('')
 props.setIntrrptMdEdtEmtEletrEn(false); 
 }   
 

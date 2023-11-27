@@ -1,7 +1,6 @@
 import style from './InsertData.module.css'
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-// import { useNavigate } from "react-router-dom";
 
 function InsertData() {
 const [Energy,setEnergy] = useState('')
@@ -11,7 +10,6 @@ const [Month,setMonth] = useState('')
 const [Year,setYear] = useState('')
 const {state} = useLocation();
 const { thisClient } = state || {};
-// const navigate = useNavigate();
 
 const clickInsert = () => { 
 if (Energy && Water && Residue && Month && Year) {
@@ -28,7 +26,6 @@ throw new Error(`Erro na solicitação: ${response.statusText}`); }
 return response.json(); })
 .then((data) =>  { setEnergy('') ;
 console.log('sucesso no post',data);
-// navigate('/ClientRegistered') 
 })
 .catch((error) => console.log('erro ao postar emissao',error))
 
@@ -42,7 +39,6 @@ throw new Error(`Erro na solicitação: ${response.statusText}`); }
 return response.json(); })
 .then((data) =>  { setWater('') ;
 console.log('sucesso no post',data);
-// navigate('/ClientRegistered') 
 })
 .catch((error) => console.log('erro ao postar emissao',error))
 
@@ -56,7 +52,6 @@ throw new Error(`Erro na solicitação: ${response.statusText}`); }
 return response.json(); })
 .then((data) =>  { setResidue('')
 console.log('sucesso no post',data);
-// navigate('/ClientRegistered') 
 })
 .catch((error) => console.log('erro ao postar emissao',error)) }    
 else {alert('Insira os dados')  } }

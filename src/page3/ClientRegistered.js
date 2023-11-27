@@ -2,7 +2,6 @@ import style from './ClientRegistered.module.css'
 import { useState,useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
-// import { useLocation } from 'react-router-dom';
 function ClientRegistered() {
 const [Boxclient,setBoxclient] = useState([]) 
 const navigate = useNavigate();
@@ -14,7 +13,7 @@ method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify(AdmTeste) })
 .then((response) => response.json())
-.then((data) => setBoxclient(data) )  //armazenar clientes em box
+.then((data) => setBoxclient(data) )  
 .catch((error) => console.log(error))
  },[Boxclient])
 

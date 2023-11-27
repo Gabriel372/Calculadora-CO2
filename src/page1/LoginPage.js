@@ -2,7 +2,6 @@ import style from './LoginPage.module.css'
 import Navbar from './Navbar';
 import { useState,useContext,useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-// import React, { useContext } from 'react';
 import { ApiContext } from '../context/ApiContext'
 import Spinner from './Spinner';
 
@@ -13,7 +12,6 @@ const [Boxadmin,setBoxadmin] = useState([])
 const navigate = useNavigate();
 const { setAdmincontext } = useContext(ApiContext);
 const [Interrupterspin,setInterrupterspin] = useState(false) 
-// const { Admincontext,setAdmincontext } = useContext(ApiContext);
 useEffect(() => {
     const Adm = {email:"marcos@gmail.com",senha:"1234567",nome:"Marcos Philippe"}
     fetch("http://191.252.38.35:8080/api/administradores/listar", {
@@ -28,15 +26,12 @@ useEffect(() => {
 
 const accessClick = () => {
     if (EmailLog && PasswordLog) {
-      // const AdmLogin = { email: EmailLog, senha: PasswordLog, nome: "a" };
   const admisOk = Boxadmin.find(
     (admin) => admin.email === EmailLog && admin.senha === PasswordLog );
-
   const admJson = {email:admisOk.email,senha:admisOk.senha,nome:admisOk.nome}
 
       if (admisOk) {
         sessionStorage.setItem('admStorage',JSON.stringify(admJson))
-        
         setAdmincontext(admJson)
         setInterrupterspin(true)
         fetch("http://191.252.38.35:8080/api/administradores/login", {
@@ -85,7 +80,6 @@ return <div>
 <input className={style.input} autoFocus type="email" placeholder='Digite seu email' onChange={changeEmail} value={EmailLog}/>
 <input className={style.input} type="password" placeholder='Digite sua senha' onChange={changePassword} value={PasswordLog}/>
 <button className={style.btnAcces}type='button' onClick={accessClick}>Entrar</button>
-{/* <button className={style.btnRegister} type='button' onClick={registerClick}>Criar uma conta</button> */}
 </div>
 {Interrupterspin && <Spinner/>}
 </div>

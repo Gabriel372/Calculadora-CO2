@@ -1,34 +1,22 @@
 import style from './ModInsertEmt.module.css'
 import { AiOutlineClose } from 'react-icons/ai';
-import { useState,useEffect } from 'react' //AiOutlineClose
+import { useState,useEffect } from 'react'
 
 function ModInsertEmt(props) {
 const [Cons_eletric,setCons_eletric] = useState('')
  const [Cons_water,setCons_water] = useState('')
  const [Gen_waste,setGen_waste] = useState('')
  const [Month,setMonth] = useState('')
-//  const FirstOption = 'Selecione o ano'
  const [Year,setYear] = useState('')
-//  const [ShowSelYear,setShowSelYear] = useState(true)
 const [ClientEmition,setClientEmition] = useState({...props.ClientEmt}) 
 const [InterruptMsg,setInterruptMsg] = useState(false)
 
-// const [FirstOption,setFirstOption] = useState('Selecione o ano')
-
-
-
-//ClientEmt
 useEffect(() => {
 setClientEmition({...props.ClientEmt})
-// setYear(FirstOption)
-
 }, [props.ClientEmt,props.ModInterruptEMit,props.Found]);
 
 const clickClose = () => {
-// setClientUpdt({...props.Clientedit})
-//  setInterruptMsg(false)
 setCons_eletric('') ;setCons_water('') ;setGen_waste('') ;setYear('');setMonth('');
-// setShowSelYear(false)
 props.setModInterruptEMit(false); }   
 
 const changeCons_eletric = (e) =>{ setCons_eletric(e.target.value); }
@@ -37,14 +25,6 @@ const changeGen_waste = (e) =>{ setGen_waste(e.target.value) }
 
 const changeSelYear = (e) => { setYear(e.target.value) ; }
 const changeSelMonth = (e) => { setMonth(e.target.value) ;}
-
-
-// const toggleShowSelYear = () => {setShowSelYear(!ShowSelYear)}
-//clickselYear
-  // setShowSelYear(!ShowSelYear) ;
-//changeSelMonth
-
-
 
 const clickInsert = () => {
     if (Cons_eletric && Cons_water && Gen_waste && Year && Month) {
@@ -89,23 +69,17 @@ const clickInsert = () => {
         if (!response.ok) {
         throw new Error(`Erro na solicitação: ${response.statusText}`); }
         return response.json(); })
-        .then((data) =>  {setClientEmition({...props.ClientEmt});setInterruptMsg(true);
+        .then((data) =>  {
+        setInterruptMsg(true);
 setTimeout(() => {setInterruptMsg(false)} ,8000) 
       setCons_eletric('') ;setCons_water('') ;setGen_waste('') ;setYear('');setMonth('');
-      props.setFound([props.Found])
         console.log('sucesso no post',data);
         })
         .catch((error) => console.log('erro ao postar emissao',error))
-
     }
-
     else {alert('Preencha os formularios') }
-} //CLICK REGISTER
+}
 
-
-//onChange={(e) => setYear(e.target.value)}
-//onChange={(e) => setSelectedYear(e.target.value)}
-//changeYear
 return <div className={props.ModInterruptEMit ? style.modalOn : style.modalOff }>
   <div className={style.squareEdit}> 
   <div className={style.divHeader}>

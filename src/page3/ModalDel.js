@@ -2,15 +2,14 @@ import style from './ModalDel.module.css'
 import { useState,useEffect } from 'react'
 
 function ModalDel(props) {
-const [Show,setShow] = useState(false) //cx de clientes
-// const { SenData } = props;
+const [Show,setShow] = useState(false) 
 
 useEffect(() => {
     setShow(props.ModInterruptDel.ModalActive)
 },[props.ModInterruptDel] )
 
 const clickYes = () => {
-    setShow(false) ;//fexar modal
+    setShow(false) ;
     props.ReceiveDelMod(false,false) 
 }
 
@@ -18,7 +17,6 @@ const clickNot = () => {
     setShow(false); 
     props.ReceiveDelMod(false,true) 
 }
-
 
 return <div className={`${Show ? style.modalOn : style.modalOff}`}>
  <div className={style.squareDel}> 

@@ -1,6 +1,6 @@
 import style from './ModViewEmit.module.css'
 import { AiOutlineClose } from 'react-icons/ai';
-import { useState,useEffect } from 'react' //AiOutlineClose
+import { useState,useEffect } from 'react'
 import MdEdtEmtWater from './MdEdtEmtWater';
 import MdEdtEmtEletrEn from './MdEdtEmtEletrEn'
 import MdEdtEmtResd from './MdEdtEmtResd'

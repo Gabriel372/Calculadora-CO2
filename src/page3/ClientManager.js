@@ -1,6 +1,5 @@
 import style from './ClientManager.module.css'
 import { useState,useEffect } from 'react'
-// import { ApiContext } from '../context/ApiContext'
 import ModalDel from './ModalDel'
 import ModalEdit from './ModalEdit'
 import NavbarLoged from '../page3/NavbarLoged';
@@ -10,45 +9,28 @@ import ModInsertEmt from './ModInsertEmt'
 import ModViewEmit from './ModViewEmit'
 import EmtDel from './EmtDel'
 
-// import Dropdown from '../page3/Dropdown'
 function ClientManager() {
-const [Boxclient,setBoxclient] = useState([]) //cx de clientes
+const [Boxclient,setBoxclient] = useState([]) 
 const [Boxemition,setBoxemition] = useState([]) 
 const [Boxclientemit,setBoxclientemit] = useState([]) 
-const [Found,setFound] = useState('') //armazena filtrados
-const [Notfound,SetNotfound] = useState('') //armazena filtrados
-const [Changeinp,setChangeinp] = useState('') //valor digitado no input
-const [ModInterruptDel,setModInterruptDel] = useState({ ModalActive: '', Delete: '' }) //valor digitado no input
-const [ModInterruptEdit,setModInterruptEdit] = useState(false) //valor digitado no input
-const [ModInterruptEMit,setModInterruptEMit] = useState(false) //valor digitado no input
+const [Found,setFound] = useState('') 
+const [Notfound,SetNotfound] = useState('') 
+const [Changeinp,setChangeinp] = useState('') 
+const [ModInterruptDel,setModInterruptDel] = useState({ ModalActive: '', Delete: '' }) 
+const [ModInterruptEdit,setModInterruptEdit] = useState(false) 
+const [ModInterruptEMit,setModInterruptEMit] = useState(false) 
 const [Clientdel,setClientdel] = useState('') 
 const [Clientedit,setClientedit] = useState('') 
 const [ClientEmt,setClientEmt] = useState('') 
 const [ClViewEmt,setClViewEmt] = useState('') 
 const [MdIntrruptViewEMt,setMdIntrruptViewEMt] = useState(false) 
 const [DelEmtOfClient,setDelEmtOfClient] = useState('') 
-
-
-// const { Admincontext } = useContext(ApiContext);
 const admStorage = JSON.parse(sessionStorage.getItem('admStorage'))
 
-const ArtfClient = {
-cpf:"22222111111",data: "2023-11-15",email:"simao@hotmail.com",
-endereco: "rua y casa 12",habitantes: "4",id: "a75fb131-8914-48e6-ba81-07a37c0dfa69", 
-matriculaDeAgua: "11111222222",matriculaDeEnergia: "11111222222",matriculaDeGas: "11111222222",
-nome: "simao",projeto: "teste",telefone: "888889999",titularAguaCpf: "11111222222",
-titularEnergiaCpf: "11111222222",titularGasCpf: "11111222222",
-emissoes:{
-  agua:{nome: "simao",id: "a75fb131-8914-48e6-ba81-07a37c0dfa69",consumo:'10',mes:'12',ano:'2023'  },
-energiaeletrica:{nome: "simao",id: "a75fb131-8914-48e6-ba81-07a37c0dfa69",consumo:'10',mes:'12',ano:'2023' },
-residuos:{nome: "simao",id: "a75fb131-8914-48e6-ba81-07a37c0dfa69",consumo:'10',mes:'12',ano:'2023' }
-}
-}
 
 useEffect(() => {
-//DELETAR 2 EMISSOES
-// Boxclientemit.forEach(client => {
-// fetch(`http://191.252.38.35:8080/api/emissoes/6a5a21aa-8c3e-4d25-8449-f5b7da67e691`,{
+
+// fetch(`http://191.252.38.35:8080/api/emissoes/c3a46260-45ac-45ec-a4cd-78a7ac1b77e1`,{
 //   method:"DELETE", })
 //   .then((response) => {
 //   if (!response.ok) {
@@ -59,17 +41,14 @@ useEffect(() => {
 //   .catch((error) => console.log(error)); 
 // })
 
-///////////////////////////////////////////////////
 fetch('http://191.252.38.35:8080/api/clientes/listar',{
   method:"POST",
   headers:{"Content-Type":"application/json"},
   body:JSON.stringify(admStorage) })
   .then((response) => response.json())
-  .then((data) => setBoxclient(data) )  //armazenar clientes em box
+  .then((data) => setBoxclient(data) )  
   .catch((error) => console.log(error))
-//EMISSOES
 // const AdmJson = {email:"marcos@gmail.com",senha:"1234567",nome:"Marcos Philippe"}
-
 fetch('http://191.252.38.35:8080/api/emissoes/listar',{
 method:"POST",
 headers:{"Content-Type":"application/json"},
@@ -81,28 +60,10 @@ body:JSON.stringify(admStorage) })
 
 },[Boxclientemit,Boxemition])
 
-// const updtClientEmt = () => {}
-
-// const GroupedClientEmit = () => {
-
-//   const grouped = Boxclient.map((client) => {
-//   const emissoes = Boxemition.filter((emission) => emission.nome === client.nome);
-//   const groupedEmissoes = emissoes.reduce((acc, curr) => {
-//   acc[curr.tipoEmissao] = curr;
-//   return acc;
-//   }, {});
-//     return { ...client, emissoes: groupedEmissoes };
-//   });
-
-//   setBoxclientemit(grouped);
-
-// };
-
 const GroupedClientEmit = () => {
   const grouped = Boxclient.map((client) => {
     const emissoes = Boxemition.filter((emission) => emission.nome === client.nome);
     const groupedEmissoes = emissoes.reduce((acc, curr) => {
-      // Adiciona a propriedade "gasto" à propriedade "emissoes"
       if (!acc[curr.tipoEmissao]) {
         acc[curr.tipoEmissao] = [];
       }
@@ -114,28 +75,18 @@ const GroupedClientEmit = () => {
   setBoxclientemit(grouped); };
 
 const clickSearch = () => { 
-  // setBoxclientemit(ArtfClient)
-  // console.log(Boxclientemit);
-// setFound([ArtfClient])
 
-//   console.log(Admincontext);
-  //   console.log('cx de clientes',Boxclient);
     console.log('cx de emissoes',Boxemition);
     console.log('cx de cliente com emissoes',Boxclientemit);
-
  if (Changeinp) {
-  //box client emit
     const cpfFiltred = Boxclientemit.filter((client) => client.cpf === Changeinp);
-    // const nameFiltred = Boxclient.filter((client) => client.nome === Changeinp); 
     const projectFiltred = Boxclientemit.filter((client) => client.projeto === Changeinp);  
     console.log(projectFiltred);
 
 if (cpfFiltred.length > 0) { setFound([...cpfFiltred]);  }    
-// else if (nameFiltred.length > 0 ) { setFound([...nameFiltred]);  }
 else if (projectFiltred.length > 0 ) { setFound([...projectFiltred]);}
 else if (Found.length === 0 ) { SetNotfound('Nenhum cliente encontrado');  }
  }  
-//  setChangeinp('') 
 }
 
 const Digiting = (e) => {setChangeinp(e.target.value); setFound('') ; SetNotfound('') }
@@ -143,13 +94,13 @@ const Digiting = (e) => {setChangeinp(e.target.value); setFound('') ; SetNotfoun
 const clickDelete = (client) => {
   console.log(client);
  setClientdel(client)   
- setModInterruptDel({ ModalActive: true, Delete: false}) }//ativa modal
+ setModInterruptDel({ ModalActive: true, Delete: false}) }
 
 const ReceiveDelMod = (boolean,yn) => { 
     setModInterruptDel({ModalActive:boolean,Delete:yn})
 if (yn === true && Clientdel){
   console.log(Clientdel);
-DeletingClient(Clientdel); setFound([]) } }//se cliente fo deletado limpa a busca
+DeletingClient(Clientdel); setFound([]) } }
 
 const DeletingClient = (client) => { 
   setDelEmtOfClient(client)  
@@ -164,7 +115,7 @@ const DeletingClient = (client) => {
         console.log(data);  })
         .catch((error) => console.log(error));  }
 
-const clickEdit = (client) => {setClientedit(client) ;setModInterruptEdit(true)}   
+const clickEdit = (client) => {setClientedit(client) ;setModInterruptEdit(true);}   
 const clickEmition = (client) => {setClientEmt(client);setModInterruptEMit(true);  }   
 const clickViewEmt = (client) => {setClViewEmt(client);setMdIntrruptViewEMt(true);}   
 
@@ -198,14 +149,12 @@ return <div >
 <button  className={style.btnEmit} onClick={()=> clickEmition(client)}>Inserir emissões</button>
 </div> 
 
-
 <div className={style.divBtnCol}>
 <button  className={style.btnInsert} onClick={()=> clickEdit(client)}>Editar</button>
 <button  className={style.btnViewEmit} onClick={()=> clickViewEmt(client)}>Visualisar emissões</button>
 </div> 
 
 </div>
-
 
 </div>
 </li>))}

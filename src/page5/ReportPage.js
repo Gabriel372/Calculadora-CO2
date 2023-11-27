@@ -2,6 +2,9 @@ import style from './ReportPage.module.css'
 import NavbarLoged from '../page3/NavbarLoged'
 import { useState,useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
+import SearchPrjctClnt from './SearchPrjctClnt'
+import SearchPrjctBigTax from './SearchPrjctBigTax'
+
 // import { useLocation } from 'react-router-dom';
 function ReportPage() {
 const [Boxemition,setBoxemition] = useState([]) 
@@ -91,13 +94,15 @@ navigate('/ResidueGen',{ state: { Boxresidue: Boxresidue }})
 
 return  <div><NavbarLoged/>
  <div className={style.container}>
-<h2>Relatório de emissoes</h2>
-<p>Selecione a categoria:</p>
-<div className={style.divBtn}>
+{/* <h2>Relatórios</h2> */}
+<SearchPrjctClnt/>
+<SearchPrjctBigTax/>
+{/* <p>Selecione a categoria:</p> */}
+{/* <div className={style.divBtn}>
 <button className={style.btnInsert} onClick={SelElectric}>Energia elétrica</button>
 <button className={style.btnInsert} onClick={SelWater}>água</button>
 <button className={style.btnInsert} onClick={SelResidue}>Residuos</button>
-</div>
+</div> */}
 {/* <ul className={style.ul} >{Boxclient.map(clientRegister => (<li key={clientRegister.id} className={style.li}> 
 <p><b>Projeto:</b>{clientRegister.projeto}</p>
 

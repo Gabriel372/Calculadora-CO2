@@ -1,5 +1,5 @@
 import style from './ModalEdit.module.css'
-import { useState ,useEffect} from 'react' //AiOutlineClose
+import { useState ,useEffect} from 'react'
 import { AiOutlineClose } from 'react-icons/ai';
 
 function ModalEdit(props) {
@@ -32,54 +32,10 @@ body:JSON.stringify(ClientPost) } )
 .then((response) => { 
 if (!response.ok) { throw new Error(`Erro na solicitação: ${response.statusText}`);}
 return response.json(); })
-.then((data) =>  {
+.then((data) =>  {setInterruptMsg(true);setTimeout(() => setInterruptMsg(false), 8000);
  console.log(`cliente atualizado`,data);})
 .catch((error) => console.log('erro ao atualizar cliente',error)) 
-
-const WaterPost = {...props.Clientedit.emissoes.agua} ;
-WaterPost.nome = ClientUpdt.nome ;
-WaterPost.cpf = ClientUpdt.cpf ;
-
-fetch(`http://191.252.38.35:8080/api/emissoes/${WaterPost.id}`,{
- method:"PUT",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(WaterPost) } )
-.then((response) => { 
-if (!response.ok) { throw new Error(`Erro na solicitação: ${response.statusText}`);}
-return response.json(); })
-.then((data) =>  {
- console.log(`cliente atualizado`,data);})
-.catch((error) => console.log('erro ao emissao cliente',error)) 
-
-const EnergyPost = {...props.Clientedit.emissoes.energiaeletrica} ;
-EnergyPost.nome = ClientUpdt.nome ;
-EnergyPost.cpf = ClientUpdt.cpf ;
-
-fetch(`http://191.252.38.35:8080/api/emissoes/${EnergyPost.id}`,{
- method:"PUT",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(EnergyPost) } )
-.then((response) => { 
-if (!response.ok) { throw new Error(`Erro na solicitação: ${response.statusText}`);}
-return response.json(); })
-.then((data) =>  {
- console.log(`emissao atualizada`,data);})
-.catch((error) => console.log('erro ao atualizar emissao',error))  
-
-const WastePost = {...props.Clientedit.emissoes.residuos} ;
-WastePost.nome = ClientUpdt.nome ;
-WastePost.cpf = ClientUpdt.cpf ;
-
-fetch(`http://191.252.38.35:8080/api/emissoes/${WastePost.id}`,{
- method:"PUT",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(WastePost) } )
-.then((response) => { 
-if (!response.ok) { throw new Error(`Erro na solicitação: ${response.statusText}`);}
-return response.json(); })
-.then((data) =>  { setInterruptMsg(true);
- console.log(`cliente atualizado`,data); })
-.catch((error) => console.log('erro ao atualizar emissao',error))  }//fechamento do 1º if
+}//fechamento do 1º if
 else{ alert('Preencha os formularios') } }
 
 const changeProject = (e) =>{ setClientUpdt({...ClientUpdt, projeto:e.target.value }) }
@@ -119,7 +75,7 @@ return <div className={props.ModInterruptEdit ? style.modalOn : style.modalOff }
 <label className={style.labelModEdit}>Nº de habitantes na residência:<input className={style.inputModEdit} type="number" placeholder='Nº de habitantes na residência' onChange={changePopulation} value={ClientUpdt.habitantes}/></label>
 <button className={style.btnUpdate} onClick={clickUpdate}>Atualizar </button>
 
-<p className={InterruptMsg ? style.msgVisible : style.msgHidden}>Cliente editado com successo !</p>
+<p className={InterruptMsg ? style.msgVisible : style.msgHidden}>Editado com successo !</p>
 </div> 
 </div>
 }
