@@ -4,6 +4,7 @@
     .dropCollapse{display: none;}
     .dropShow{display: block; 
     position: absolute;
+    z-index: 1;
     }
     .btnClick{
     height: auto;    

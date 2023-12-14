@@ -1,0 +1,37 @@
+.container{
+    max-width: 1100px;
+    margin: auto;
+    height: 100%;
+    }
+
+.ul{
+    /* display: grid; */
+    margin: auto;
+    margin-left: 5px;
+display: flex;
+flex-direction: column;
+align-items: center;
+/* max-width: 200px; */
+    /* grid-gap: 10px;
+    grid-template-columns: auto  auto auto auto auto ; */
+    }
+    .li{margin: 0 0 7px 0;
+        padding: 0;    
+        text-align: left;    
+        list-style: none;
+        /* border: 1px solid gray;
+        border-radius: 6px; */
+        margin-right: 0;
+        }
+.divAllPrjct{
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.titH2{
+padding: 0;
+/* margin: 15px 0 15 px 0;     */
+margin: 10px 0;
+display: block;
+}
+

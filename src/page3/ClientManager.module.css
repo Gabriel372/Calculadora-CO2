@@ -12,6 +12,7 @@ max-width: 250px;
 border-radius: 3px;
 margin-right: 5px;
 margin-bottom: 40px;
+padding-left: 5px;
 }
 .ul{
     display: grid;
@@ -20,6 +21,17 @@ margin-bottom: 40px;
     grid-gap: 10px;
     grid-template-columns: auto  auto ;
     }
+.spinnerP{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+}
+
+
+
 @media (max-width: 500px) {
 .divBtnCliMan{flex-direction: column;} 
 .divBtnCol{max-width: 250px;
@@ -86,4 +98,6 @@ display: flex;
 align-content: center;    
 }
 
-.Ploading{color: rgb(39, 121, 214);}                
+.Ploading{color: rgb(39, 121, 214);
+margin-left: 10px;
+}                

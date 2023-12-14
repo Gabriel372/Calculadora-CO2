@@ -20,17 +20,15 @@ useEffect(() => {
       body:JSON.stringify(Adm) })
       .then((response) => {if (!response.ok) {throw new Error('Erro na solicitação da API'); }
       return response.json(); })
-      .then((data) => {setBoxadmin(data)})
+      .then((data) => {setBoxadmin(data) })
       .catch((error) => {console.error('Falha ao receber administradores:', error);
       }); }, []);
 
 const accessClick = () => {
     if (EmailLog && PasswordLog) {
-  const admisOk = Boxadmin.find(
-    (admin) => admin.email === EmailLog && admin.senha === PasswordLog );
-  const admJson = {email:admisOk.email,senha:admisOk.senha,nome:admisOk.nome}
-
+  const admisOk = Boxadmin.find( (admin) => admin.email === EmailLog && admin.senha === PasswordLog );
       if (admisOk) {
+        const admJson = {email:admisOk.email,senha:admisOk.senha,nome:admisOk.nome}
         sessionStorage.setItem('admStorage',JSON.stringify(admJson))
         setAdmincontext(admJson)
         setInterrupterspin(true)
@@ -46,7 +44,7 @@ const accessClick = () => {
             return response.json();
           })
           .then((data) => {
-            navigate('/ClientRegisterPage', { state: { admLoged: data } });
+            navigate('/StartPg');
           })
           .catch((error) => {
             console.log('Erro de login admin:', error);

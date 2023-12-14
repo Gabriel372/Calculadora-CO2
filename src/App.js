@@ -14,7 +14,10 @@ import ResidueGen from './page5/ResidueGen'
 import SearchPrjctClnt from './page5/SearchPrjctClnt';
 import SearchPrjctBigTax from './page5/SearchPrjctBigTax';
 import SearchPrjctClntMnth from './page5/SearchPrjctClntMnth';
-git
+import AllProjct from './page5/AllProjct';
+import ListConMonth from './page5/ListConMonth'
+import StartPg from './page2/StartPg'
+
 function App() {
   return (
     <MyProvider>
@@ -24,6 +27,7 @@ function App() {
 <div className="b-bottom"></div>
 <Routes>
 <Route exact path='/' element={<LoginPage/>}/>
+<Route  path='/StartPg' element={<StartPg/>}/>
 <Route  path='/AdmRegisterPage' element={<AdmRegisterPage/>}/>
 <Route  path='/ClientRegisterPage' element={<ClientRegisterPage/>}/>
 <Route  path='/ClientRegistered' element={<ClientRegistered/>}/>
@@ -36,7 +40,8 @@ function App() {
 <Route  path='/SearchPrjctClnt' element={<SearchPrjctClnt/>}/>
 <Route  path='/SearchPrjctBigTax' element={<SearchPrjctBigTax/>}/>
 <Route  path='/SearchPrjctClntMnth' element={<SearchPrjctClntMnth/>}/>
-
+<Route  path='/AllProjct' element={<AllProjct/>}/>
+<Route  path='/ListConMonth' element={<ListConMonth/>}/>
 </Routes>
 </BrowserRouter>
   </div>  

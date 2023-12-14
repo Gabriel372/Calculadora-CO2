@@ -27,14 +27,18 @@ const changeSelYear = (e) => { setYear(e.target.value) ; }
 const changeSelMonth = (e) => { setMonth(e.target.value) ;}
 
 const clickInsert = () => {
+  console.log(props.ClientEmt);
     if (Cons_eletric && Cons_water && Gen_waste && Year && Month) {
     
     const admStorage = JSON.parse(sessionStorage.getItem('admStorage'))
     
-    const emEnergy = {tipoEmissao:"energiaeletrica",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Cons_eletric,consumo:0 } ; 
-    const emWater = {tipoEmissao:"agua",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Cons_water,consumo:0}  ;
-    const emResidue = {tipoEmissao:"residuos",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Gen_waste,consumo:0};
+    const emEnergy = {tipoEmissao:"energiaeletrica",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Cons_eletric,consumo:0 ,taxaDeReducao:0}  ;
+    const emWater = {tipoEmissao:"agua",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Cons_water,consumo:0,taxaDeReducao:0}  ;
+    const emResidue = {tipoEmissao:"residuos",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Gen_waste,consumo:0,taxaDeReducao:0}  ;
     
+//          const emWater = {tipoEmissao:"agua",nome:Name,cpf:Cpf,mes:Month,ano:Year,gasto:Cons_water,consumo:0,taxaDeReducao:0}  ;
+
+
         fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${admStorage.email}&senha=${admStorage.senha}`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -69,13 +73,31 @@ const clickInsert = () => {
         if (!response.ok) {
         throw new Error(`Erro na solicitação: ${response.statusText}`); }
         return response.json(); })
-        .then((data) =>  {
-        setInterruptMsg(true);
-setTimeout(() => {setInterruptMsg(false)} ,8000) 
-      setCons_eletric('') ;setCons_water('') ;setGen_waste('') ;setYear('');setMonth('');
-        console.log('sucesso no post',data);
+        .then((data) =>  { console.log('sucesso no post',data);SaveApiConsMonth();
         })
         .catch((error) => console.log('erro ao postar emissao',error))
+
+
+
+ const SaveApiConsMonth = () => {  
+
+//const consumMonth={nome:Name,cpf:Cpf,projeto:Project,mes:Month,ano:Year,consumo:0,taxaDeReducao:0,beneficio:0} 
+
+  const consumMonth={nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,projeto:props.ClientEmt.projeto,mes:Month, ano:Year,consumo:0,taxaDeReducao:0,beneficio:0} 
+  fetch(`http://191.252.38.35:8080/api/consumoMensal/criaConsumoMensal?email=${admStorage.email}&senha=${admStorage.senha}`,{
+  method:"POST",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify(consumMonth) } )
+  .then((response) => { 
+  if (!response.ok) {
+   throw new Error(`Erro na solicitação: ${response.statusText}`); }
+   return response.json(); })
+  .then((data) =>  { console.log('sucesso no post conumo mensal',data);setInterruptMsg(true);
+  setTimeout(() => {setInterruptMsg(false)} ,8000) 
+  setCons_eletric('') ;setCons_water('') ;setGen_waste('') ;setYear('');setMonth(''); } )
+  .catch((error) => {console.log('erro ao postar cons. mensal',error);console.log(consumMonth);  }) 
+    }
+
     }
     else {alert('Preencha os formularios') }
 }

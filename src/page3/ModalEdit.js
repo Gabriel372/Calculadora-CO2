@@ -11,6 +11,7 @@ setClientUpdt({...props.Clientedit})
   }, [props.Clientedit]);
 
 const clickClose = () => {
+  console.log(ClientUpdt);
   props.clickSearch(); 
     setClientUpdt({...props.Clientedit})
     setInterruptMsg(false)
@@ -32,9 +33,64 @@ body:JSON.stringify(ClientPost) } )
 .then((response) => { 
 if (!response.ok) { throw new Error(`Erro na solicitação: ${response.statusText}`);}
 return response.json(); })
-.then((data) =>  {setInterruptMsg(true);setTimeout(() => setInterruptMsg(false), 8000);
+.then((data) =>  {
+  if (ClientUpdt.nome !== props.Clientedit.nome || ClientUpdt.cpf !== props.Clientedit.cpf) {
+    UpdateEmWater() }  
  console.log(`cliente atualizado`,data);})
 .catch((error) => console.log('erro ao atualizar cliente',error)) 
+
+function UpdateEmWater() { 
+  
+props.Clientedit.emissoes.agua.forEach( emissao => {
+  let emWater = {tipoEmissao:"agua",nome:ClientUpdt.nome,cpf:ClientUpdt.cpf,mes:props.Clientedit.emissoes.agua.mes,ano:props.Clientedit.emissoes.agua.ano,gasto:props.Clientedit.emissoes.agua.gasto,consumo:0,taxaDeReducao:0}
+
+  fetch(`http://191.252.38.35:8080/api/emissoes/${emissao.id}`,{
+  method:"PUT",
+  headers:{"Content-Type":"application/json"},
+  body:JSON.stringify(emWater) } )
+  .then((response) => { 
+  if (!response.ok) {
+  throw new Error(`Erro na solicitação: ${response.statusText}`); }
+  return response.json(); })
+  .then((data) =>  { 
+  console.log('sucesso no post',data);UpdateEmEnEletr() })
+  .catch((error) => console.log('erro ao postar emissao',error))  });  }
+
+  function UpdateEmEnEletr() { 
+  
+    props.Clientedit.emissoes.energiaeletrica.forEach( emissao => {
+
+      let emEnEletr = {tipoEmissao:"energiaeletrica",nome:ClientUpdt.nome,cpf:ClientUpdt.cpf,mes:props.Clientedit.emissoes.energiaeletrica.mes,ano:props.Clientedit.emissoes.energiaeletrica.ano,gasto:props.Clientedit.emissoes.energiaeletrica.gasto,consumo:0,taxaDeReducao:0} ;
+
+      fetch(`http://191.252.38.35:8080/api/emissoes/${emissao.id}`,{
+      method:"PUT",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(emEnEletr) } )
+      .then((response) => { 
+      if (!response.ok) {
+      throw new Error(`Erro na solicitação: ${response.statusText}`); }
+      return response.json(); })
+      .then((data) =>  { console.log('sucesso no post',data); UpdateEmResidue()    })
+      .catch((error) => console.log('erro ao postar emissao',error))  });  }
+
+      function UpdateEmResidue() { 
+  
+        props.Clientedit.emissoes.residuos.forEach( emissao => {
+    
+          let emResidue = {tipoEmissao:"residuos",nome:ClientUpdt.nome,cpf:ClientUpdt.cpf,mes:props.Clientedit.emissoes.residuos.mes,ano:props.Clientedit.emissoes.residuos.ano,gasto:props.Clientedit.emissoes.residuos.gasto,consumo:0,taxaDeReducao:0}
+        
+          fetch(`http://191.252.38.35:8080/api/emissoes/${emissao.id}`,{
+          method:"PUT",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify(emResidue) } )
+          .then((response) => { 
+          if (!response.ok) {
+          throw new Error(`Erro na solicitação: ${response.statusText}`); }
+          return response.json(); })
+          .then((data) =>  { 
+          console.log('sucesso no post',data);
+          setInterruptMsg(true); setTimeout(() => setInterruptMsg(false), 8000)  })
+          .catch((error) => console.log('erro ao postar emissao',error))  });  }
 }//fechamento do 1º if
 else{ alert('Preencha os formularios') } }
 

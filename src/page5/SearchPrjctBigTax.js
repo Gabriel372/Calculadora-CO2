@@ -3,87 +3,131 @@ import style from './SearchPrjctBigTax.module.css'
 import { useState,useEffect } from 'react'
 
 function SearchPrjctBigTax() {
-const [Boxclient,setBoxclient] = useState([]) //cx de clientes
-const [ChangeInp,setChangeInp] = useState('') //cx de clientes
-const [NotFound,setNotFound] = useState('Projeto nao encontrado') //cx de clientes
- 
-//ChangeInp
-//Notfound
-
-// useEffect(() => {
-//     fetch('http://191.252.38.35:8080/api/clientes/listarPorProjeto?email=marcos@gmail.com&senha=1234567',{
-//         method:"POST",
-//          headers:{"Content-Type":"application/json"},
-//          body:JSON.stringify('barra') })
-//          .then((response) => response.json())
-//          .then((data) => {console.log('relatorio recebido', data);setBoxclient(data)} )
-//          .catch((error) => { console.log('erro', error);  }); 
-// },[])
-
-
-// consumoMensal/maiorTaxaDeReducaoPorProjeto que recebe como parâmetros da requisição o 
-// "email", "senha", "ano", "mes1"(o menor), "mes2"(o maior), e como corpo da requisição
-// o projeto no formato texto. 
-
-//191.252.38.35:8080/api/consumoMensal/maiorTaxaDeReducaoPorProjeto?email=marcos@gmail.com&senha=1234567&ano=2023&mes1=01&mes2=12
+const [Boxclient,setBoxclient] = useState([])
+const [BoxClEmpty,setBoxClEmpty] = useState(false) 
+const [Project,setProject] = useState('') 
+const admStorage = JSON.parse(sessionStorage.getItem('admStorage'))
+const [Month1,setMonth1] = useState('')
+const [Month2,setMonth2] = useState('')
+const [Year1,setYear1] = useState('')
+const [Year2,setYear2] = useState('')
+// "consumoMensal/maiorTaxaDeReducaoPorProjeto", usa-se nesta ordem 
+// "email", "senha", "ano1", "mes1", "ano2", "mes2" como parâmetro da requisição, 
+// e recebe o projeto no corpo da requisição. Usa-se o método "POST".
+//  O endpoint retorna os clientes com a maior taxa de redução total e benefício total no período e no projeto especificado.
 
 
 const clickSearch = () => { 
-//  if (ChangeInp) {
-fetch('http://191.252.38.35:8080/api/consumoMensal/maiorTaxaDeReducaoPorProjeto?email=marcos@gmail.com&senha=1234567&ano=2023&mes1=01&mes2=12',{
+if (Year1 && Year2 && Month1 && Month2 && Project) {
+fetch(`http://191.252.38.35:8080/api/consumoMensal/maiorTaxaDeReducaoPorProjeto?email=${admStorage.email}&senha=${admStorage.senha}&ano1=${Year1}&mes1=${Month1}&ano2=${Year2}&mes2=${Month2}`,{
     method:"POST",
      headers:{"Content-Type":"application/json"},
-     body:JSON.stringify("barra") })
+     body:JSON.stringify(Project) })
      .then((response) => response.json())
-     .then((data) => {console.log('relatorio recebido', data);setBoxclient(data)} )
-     .catch((error) => { console.log('erro', error);  }); 
+     .then((data) => {
+    if(data.length === 0){setBoxclient([]) ; setBoxClEmpty(true) ;console.log('cx de relatorio vazia',data);}
+     else {console.log('relatorio recebido', data);setBoxClEmpty(false)
+     setBoxclient(data);}}  )
+     .catch((error) => { console.log('erro', error); setBoxclient([]) ; setBoxClEmpty(true) }); 
+}  
+else {setBoxClEmpty(false) ;setTimeout(() => {alert('Preencha o formulário')  },50)   }
 
-//     const cpfFiltred = Boxclientemit.filter((client) => client.cpf === Changeinp);
-//     const projectFiltred = Boxclientemit.filter((client) => client.projeto === Changeinp);  
-// if (cpfFiltred.length > 0) { setFound([...cpfFiltred]);  }    
-// // else if (nameFiltred.length > 0 ) { setFound([...nameFiltred]);  }
-// else if (projectFiltred.length > 0 ) { setFound([...projectFiltred]);}
-// else if (Found.length === 0 ) { SetNotfound('Nenhum cliente encontrado');  }
-//  }  
-//  setChangeinp('') 
 }
 
-const ChangeSearch = (e) => {setChangeInp(e.target.value);setBoxclient([])}
+
+const changeSelYear1 = (e) => { setYear1(e.target.value) ;}
+const changeSelYear2 = (e) => { setYear2(e.target.value) ;}
+const changeSelMonth1 = (e) => { setMonth1(e.target.value) ;}
+const changeSelMonth2 = (e) => { setMonth2(e.target.value) ;}
+const changeProjct = (e) => {setProject(e.target.value)}
 
 const Convert = (any) => { const [year, month, day] = any.split('-');
 const DateConverted = `${day}/${month}/${year}`; return DateConverted; }
 
 
-// cpf data eamil endereco id matriculaDeAgua matriculaDeEnergia matriculaDeGas 
-// nome projeto telefone titularAguaCpf titularEnergiaCpf titularGasCpf
-
-
-
-
 return <div>
 <NavbarLoged/> 
 <div className={style.container}>
-    <h2 className={style.searcH2}>Busca por projeto a maior taxa de redução de consumo</h2>
+    <h2 className={style.searcH2}>Filtro por projeto a taxa de redução de consumo</h2>
 
-<div><input className={style.cpfInput} type='text' onChange={ChangeSearch}  autoFocus value={ChangeInp} placeholder='Digite o projeto'/>    
-<button onClick={clickSearch}>Buscar</button></div>   
+<div className={style.divInpSrchPrtcj}>
 
-{Boxclient.length > 0 && <h3>Projeto: {ChangeInp}</h3>}
+<div className={style.divInpChild}>
+
+<p className={style.pSelSrchPrjct}>Selecione o ano inicial:
+<select className={style.selEmYear} onChange={changeSelYear1}  value={Year1}>
+<option value=''></option>
+  {Array.from({ length: 31 }, (_, i) => i + 2023).map(num => (
+    <option className={style.selEmYear}  key={num} value={num}>{num}</option>
+  ))}
+</select>
+</p>
+
+<p className={style.pSelSrchPrjct}>Selecione o mês inicial:
+<select className={style.selEmMonth} onChange={changeSelMonth1} value={Month1}>
+<option value=''></option>
+  {['1', '2', '3', '4', '5', '6', '7', '8', '9',
+   '10', '11', '12'].map((mes, index) => (
+    <option key={index} value={index + 1}>{mes}</option>
+  ))}
+</select>
+</p>
+
+</div>
+
+
+<div className={style.divInpChild}>
+
+<p className={style.pSelSrchPrjct}>Selecione o ano final:
+<select className={style.selEmYear} onChange={changeSelYear2}  value={Year2}>
+<option value=''></option>
+  {Array.from({ length: 31 }, (_, i) => i + 2023).map(num => (
+    <option className={style.selEmYear}  key={num} value={num}>{num}</option>
+  ))}
+</select>
+</p>
+
+<p className={style.pSelSrchPrjct}>Selecione o mês final:
+<select className={style.selEmMonth} onChange={changeSelMonth2} value={Month2}>
+<option value=''></option>
+  {['1', '2', '3', '4', '5', '6', '7', '8', '9',
+   '10', '11', '12'].map((mes, index) => (
+    <option key={index} value={index + 1}>{mes}</option>
+  ))}
+</select>
+</p>
+
+</div>
+
+</div>   
+
+    <input className={style.cpfInput} type='text' onChange={changeProjct}  autoFocus value={Project} placeholder='Digite o projeto'/>    
+<button onClick={clickSearch}>Buscar</button>
+
+{BoxClEmpty && <p>Nenhum cliente encontrado</p>}
+
+
+{/* {Boxclient.length > 0 && <h3>Projeto: {SelProject}</h3>} */}
 
 {Boxclient.length > 0 &&
   <ul className={style.ul} >
 {Boxclient.map(client => (<li key={client.id} className={style.li}> 
-    <p>Cpf: {client.cpf}</p><p> Nome: {client.nome}</p>
+    <p>Taxa de redução: {Number(client.taxaDeReducao).toFixed(2)} %</p>
+    <p>CPF: {client.cpf}</p>
+    <p> Nome: {client.nome}</p>
+    <p>Projeto: {client.projeto}</p>
     <p>Data de cadastro: {Convert(client.data)}</p>
     <p>Email: {client.email}</p>
     <p>Endereço: {client.endereco}</p>
     <p>Habitantes: {client.habitantes}</p>
+    <p>Telefone: {client.telefone}</p>
+
+    {/* <p>Código do cliente/água: {client.matriculaDeAgua}</p>
     <p>Código do cliente/energia: {client.matriculaDeEnergia}</p>
     <p>Código do cliente/gás: {client.matriculaDeGas}</p>
-    <p>Telefone: {client.telefone}</p>
     <p>Titular de água cpf: {client.titularAguaCpf}</p>
     <p>Titular de energia cpf: {client.titularEnergiaCpf}</p>
-    <p>Titular de gás cpf: {client.titularGasCpf}</p>
+    <p>Titular de gás cpf: {client.titularGasCpf}</p> */}
 </li>))}
 </ul> }
 

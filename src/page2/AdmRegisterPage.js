@@ -42,7 +42,7 @@ e.target.value ? setPassword(e.target.value) : setPassword('')}
 
 return <div> <NavbarLoged/> 
 <div className={style.container}>
-    <h2>Registre-se como administrador</h2>
+    <h2>Cadastro do administrador</h2>
 <div className={style.squareLogin}>
 <input className={style.input} autoFocus type="text" placeholder='Preencha seu nome completo' onChange={changeName} value={Name}/>
 <input className={style.input} type="email" placeholder='Preencha seu email' onChange={changeEmail} value={Email}/>

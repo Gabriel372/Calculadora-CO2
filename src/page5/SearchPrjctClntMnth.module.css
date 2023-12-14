@@ -29,6 +29,28 @@ display: block;
         border-radius: 6px;
         margin-right: 0;
         }
+.divInpSrchPrtcj{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+.pSelSrchPrjct{
+display: flex;
+flex-direction: column;   
+margin-left: 10px; 
+}
+.inpDigPrjct{
+    margin: 10px 0 0 10px;
+    max-width: 160px;
+}
+.btnPrjctMon{
+margin-top: 10px;    
+}
+/* .pMsgFail{
+color:rgb(39, 121, 214);  
+} */
+
 
     @media (max-width: 500px) {
 .ul{

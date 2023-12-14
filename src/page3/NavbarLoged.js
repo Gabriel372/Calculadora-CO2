@@ -12,10 +12,12 @@ return(
 <a href="http://institutoterrazul.org.br/">    
 <img src={terraAzulImg} alt="TERRA AZUL" /></a>
 <ul >
-<li > <Link to='/AdmRegisterPage'>REGISTRO DO ADMINISTRADOR</Link></li>
+<li > <Link to='/StartPg'>HOME</Link></li> 
 <li > <Dropdown/></li> 
+<li > <Link to='/ClientManager'>FILTRO DO CLIENTE</Link></li>
 <li > <DropDwReport/></li>
 <li > <Link to='/' onClick={() =>{sessionStorage.removeItem('admStorage')}}>SAIR</Link></li>
+
 </ul>
 </nav>
 </div> 
