@@ -3,14 +3,10 @@ import { useState,useEffect } from 'react'
 
 function ModalDel(props) {
 const [Show,setShow] = useState(false) 
-// const [BoxEmiton,setBoxEmiton] = useState(props.Clientdel.emissoes) 
 const admStorage = JSON.parse(sessionStorage.getItem('admStorage'))
 
 useEffect(() => { setShow(props.ModInterruptDel) },[props.ModInterruptDel,props.Clientdel] )
 
-function clickNot() { console.log(props.Clientdel);  props.setModInterruptDel(false) }
-
-function clickYes() { AllEmitionsDelete(); }
 
 function AllEmitionsDelete() { 
 fetch(`http://191.252.38.35:8080/api/emissoes/deletarPorCpf?email=${admStorage.email}&senha=${admStorage.senha}`,{
@@ -50,8 +46,8 @@ function AllConsMonthDelete() {
 return <div className={`${props.ModInterruptDel ? style.modalOn : style.modalOff}`}>
  <div className={style.squareDel}> 
  <h4 className={style.h4ModDel}>Deseja deletar esse cliente ?</h4>   
- <button  className={style.btnNot} onClick={clickNot}>Não</button>
- <button  className={style.btnYes} onClick={clickYes}>Sim</button>
+ <button  className={style.btnNot} onClick={()=>{props.setModInterruptDel(false)}}>Não</button>
+ <button  className={style.btnYes} onClick={()=>{AllEmitionsDelete()}}>Sim</button>
  </div>  
 </div>
 

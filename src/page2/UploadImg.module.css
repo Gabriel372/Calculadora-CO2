@@ -1,0 +1,34 @@
+h3{text-align: center;}
+.btnUpload{
+margin: 0 0 5px 5pxpx;
+}
+header{
+    text-align:center ;
+}
+form{
+    text-align: left;
+}
+.spanUploadImg{
+color: green;
+background-color: rgb(182, 248, 182) ;
+border-radius: 5px;
+border: 1px solid rgb(98, 204, 98);
+padding: 0 5px 0 5px;
+}
+.H3UploadImg{
+margin-bottom: 10px;    
+}
+
+
+/* .inputUpload{
+background-color: rgb(29, 124, 184);
+
+
+} */
+
+
+
+/* img{
+max-width: 400px;    
+max-height: 200px;
+}  */

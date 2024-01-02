@@ -16,10 +16,13 @@ display: block;
 }
 .ul{
     display: grid;
-    margin: auto;
-    margin-left: 5px;
+    /* margin: auto; */
+    margin: 0;
+    /* margin-left: 5px; */
     grid-gap: 10px;
-    grid-template-columns: auto  auto auto auto;
+    grid-template-columns: 550px 550px;
+    justify-content: space-around;
+
     }
     .li{
         padding: 7px;    
@@ -28,6 +31,8 @@ display: block;
         border: 1px solid gray;
         border-radius: 6px;
         margin-right: 0;
+        /* max-width: 550px;
+        max-height: 420px; */
         }
 .divInpSrchPrtcj{
 display: flex;
@@ -38,24 +43,74 @@ justify-content: center;
 .pSelSrchPrjct{
 display: flex;
 flex-direction: column;   
-margin-left: 10px; 
+
+margin: 0 0 0 10px;
 }
 .inpDigPrjct{
-    margin: 10px 0 0 10px;
+    /* margin: 10px 0 0 10px; */
+    margin: auto 0 0 10px;
     max-width: 160px;
 }
 .btnPrjctMon{
 margin-top: 10px;    
 }
-/* .pMsgFail{
-color:rgb(39, 121, 214);  
-} */
-
-
-    @media (max-width: 500px) {
-.ul{
-grid-template-columns: auto;
-    }
-
-
+.SelProjctClientMonth{
+height: 30px;
 }
+.H2SearchPCM{
+padding: 0;  
+margin-bottom: 8px;
+display: block;
+}
+
+@media (max-width: 1120px) {
+    .ul {
+      grid-template-columns: 700px;
+    }
+  }
+  @media (max-width: 740px) {
+    .ul {
+        grid-template-columns: 600px;
+
+    }
+  }
+
+  @media (max-width: 500px) {
+    .ul {
+      grid-template-columns: 390px;
+    }
+    .inpDigPrjct{
+      max-width: 110px;
+      font-size: 15px;
+    }
+    .H2SearchPCM{
+font-size: 20px;
+    }
+  }  
+
+  @media (max-width: 392px) {
+    .ul {
+      grid-template-columns: 355px;}
+
+  }
+  @media (max-width: 380px) {
+    .ul {
+      grid-template-columns: 340px;}
+
+  }   
+  @media (max-width: 370px) {
+    .ul {
+      grid-template-columns: 330px;}
+
+  }  
+
+
+
+
+
+
+
+  
+
+
+

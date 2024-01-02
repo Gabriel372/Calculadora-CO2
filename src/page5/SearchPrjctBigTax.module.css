@@ -3,9 +3,10 @@
     margin: auto;
     height: 100%;
     padding-right: 5px;
+    padding-bottom: 20px;
     }
 .cpfInput{
-    max-width: 250px;
+    max-width: 200px;
     border-radius: 3px;
     margin-right: 5px;
     margin-bottom: 10px;
@@ -49,10 +50,16 @@ justify-content: center;
 
     @media (max-width: 500px) {
 .ul{
-grid-template-columns: auto;
+grid-template-columns: auto auto;
+justify-content: center;
     }
     .divInpSrchPrtcj{
         flex-direction: column;
         }
 p{font-size: 15px; }
 }
+@media (max-width: 430px) {
+    .ul{
+    grid-template-columns: 340px;
+        }}
+

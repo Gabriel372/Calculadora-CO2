@@ -1,0 +1,87 @@
+.container{
+    text-align: right;
+    margin-top: 5px;
+}
+.btnOpenModEditImg{
+    display: block;
+    margin:10px 5px 0 auto ;
+    background-color: white;
+    color: rgb(0, 132, 255);;
+    border: none;
+    font-size: 20px;
+    max-width: 30px;
+   }
+   /* .btnYes:hover{
+   background-color: green;
+} */
+.toolTipEdtImg {
+visibility: hidden;
+color: rgb(0, 174, 255);
+margin: 0px 5px 0 0 ;
+} 
+.btnOpenModEditImg:hover {
+background-color: white;   
+color: blue;
+}
+
+ .btnOpenModEditImg:hover + .toolTipEdtImg {
+visibility: visible;
+}
+.btnCloseModEditImg{
+background-color: white;
+color: rgb(0, 174, 255);
+border: none;
+max-width: 30px;
+font-size: 25px;
+margin: 10px;
+}
+.btnCloseModEditImg:hover{
+    color: blue ;
+    background-color: white;
+
+    }
+
+.modalOn{
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100% ;
+    height: 100%;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    z-index: 3;
+    
+    }
+    .modalOff{
+    display: none;
+    }
+    
+    .squarEdit{
+    border: 1px solid gray;   
+    max-width: 1100px; 
+    border-radius: 5px;
+    position: relative;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0 7px 0 7px;
+    }
+    .h4ModDel{
+    margin:10px;    
+    }
+    @media (max-width: 800px) {
+        .squarEdit{
+max-height: 700px;      
+overflow-y: scroll;
+}
+            } 
+
+    /* @media (max-width: 500px) {
+        .btnYes{
+font-size: 17px;        }
+
+
+            }  */
+

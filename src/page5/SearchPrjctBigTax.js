@@ -1,6 +1,7 @@
 import NavbarLoged from '../page3/NavbarLoged'
 import style from './SearchPrjctBigTax.module.css'
 import { useState,useEffect } from 'react'
+import GeneratePdf from './GeneratePdf'
 
 function SearchPrjctBigTax() {
 const [Boxclient,setBoxclient] = useState([])
@@ -48,7 +49,11 @@ const DateConverted = `${day}/${month}/${year}`; return DateConverted; }
 return <div>
 <NavbarLoged/> 
 <div className={style.container}>
-    <h2 className={style.searcH2}>Filtro por projeto a taxa de redução de consumo</h2>
+
+<div className={style.divTitleAllPrjct}>
+    <h2 className={style.titH2}>Filtro por projeto a taxa de redução de consumo</h2>
+    {Boxclient.length > 0 && <GeneratePdf />}
+    </div>
 
 <div className={style.divInpSrchPrtcj}>
 

@@ -8,6 +8,8 @@ import Spinner from './Spinner';
 import ModInsertEmt from './ModInsertEmt'
 import ModViewEmit from './ModViewEmit'
 import EmtDel from './EmtDel'
+import GeneratePdf from '../page5/GeneratePdf'
+
 
 function ClientManager() {
 const [Boxclient,setBoxclient] = useState([]) 
@@ -68,43 +70,6 @@ body:JSON.stringify(admStorage) })
 
 },[Boxclientemit,Boxemition,Found])
 
-// const GroupedClientEmit = () => {
-//   const grouped = Boxclient.map((client) => {
-//     const emissoes = Boxemition.filter((emission) => emission.nome === client.nome);
-//     const groupedEmissoes = emissoes.reduce((acc, curr) => {
-//       if (!acc[curr.tipoEmissao]) {
-//         acc[curr.tipoEmissao] = [];
-//       }
-//       acc[curr.tipoEmissao].push({ ...curr, gasto: curr.gasto });
-//       return acc;
-//     }, {});
-//     return { ...client, emissoes: groupedEmissoes };
-//   });
-//   setBoxclientemit(grouped); 
-
-// };
-
-// const GroupedClientEmit = () => {
-//   const grouped = Boxclient.map((client) => {
-//     const emissoes = Boxemition.filter((emission) => emission.nome === client.nome);
-//     const groupedEmissoes = emissoes.reduce((acc, curr) => {
-//       if (!acc[curr.tipoEmissao]) {
-//         acc[curr.tipoEmissao] = [];
-//       }
-//       acc[curr.tipoEmissao].push({ ...curr, gasto: curr.gasto });
-//       return acc;
-//     }, {});
-
-//     ['agua', 'energiaeletrica', 'residuos'].forEach((tipoEmissao) => {
-//       if (groupedEmissoes[tipoEmissao]) {
-//         groupedEmissoes[tipoEmissao].sort((a, b) => a.mes - b.mes);
-//       }
-//     });
-
-//     return { ...client, emissoes: groupedEmissoes };
-//   });
-//   setBoxclientemit(grouped);
-// };
 
 const GroupedClientEmit = () => {
   const grouped = Boxclient.map((client) => {
@@ -153,8 +118,6 @@ const clickSearch = () => {
 // })
 //======
 
-    console.log('cx de emissoes',Boxemition);
-    console.log('cx de cliente com emissoes',Boxclientemit);
  if (Changeinp) {
     let InpValueLower = Changeinp.toLowerCase()
     const cpfFiltred = Boxclientemit.filter((client) => client.cpf === InpValueLower);
@@ -173,30 +136,11 @@ const clickDelete = (client) => {
  setClientdel(client)   
  setModInterruptDel(true) }
 
-// const ReceiveDelMod = (boolean,yn) => { 
-//     setModInterruptDel({ModalActive:boolean,Delete:yn})
-// if (yn === true && Clientdel){
-//   console.log(Clientdel);
-// DeletingClient(Clientdel); setFound([]) } }
-
-// const DeletingClient = (client) => { 
-//   setDelEmtOfClient(client)  
-//         console.log(client);
-//         fetch(`http://191.252.38.35:8080/api/clientes/${client.id}`,{
-//         method:"DELETE", })
-//         .then((response) => {
-//         if (!response.ok) {
-//         throw new Error(`Erro ao excluir cliente: ${response.status}`); }
-//         return response.json(); })
-//         .then((data) => {
-//         console.log(data);  })
-//         .catch((error) => console.log(error));  }
 
 const clickEdit = (client) => {setClientedit(client) ;setModInterruptEdit(true);}   
 const clickEmition = (client) => {setClientEmt(client);setModInterruptEMit(true);  }   
 const clickViewEmt = (client) => {setClViewEmt(client);setMdIntrruptViewEMt(true);}   
 
-//00011122255544
 
 return <div >
 <ModalDel setModInterruptDel={setModInterruptDel} ModInterruptDel={ModInterruptDel} setClientdel={setClientdel} Clientdel={Clientdel} setFound={setFound}/>
@@ -207,9 +151,12 @@ return <div >
 <NavbarLoged/>    
 <div className={style.container}>
 
-    <h2>Filtro por cpf ou projeto clientes cadastrados</h2>
-    {/* <h3>Busca por cpf ou projeto</h3> */}
-  
+<div className={style.divTitleAllPrjct}>
+    <h2 className={style.titH2}>Filtro por cpf ou projeto clientes cadastrados</h2>
+{Found.length > 0 && <GeneratePdf />}
+</div>
+
+
 {/* {Boxclientemit.length === 0 ?<div>
  <Spinner/><p className={style.Ploading}>{msg.loadData}</p></div>:'' }    
 <div><input className={style.cpfInput} type='text' onChange={Digiting}  autoFocus value={Changeinp}/>    

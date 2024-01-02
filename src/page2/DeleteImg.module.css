@@ -1,0 +1,52 @@
+.imgDelete{
+width: 100%;
+
+}
+.divImgDel{
+margin-top: 8px;    
+display: grid;
+grid-template-columns: 120px 120px 120px 120px;
+grid-gap: 5px;
+text-align: center;
+}
+.btnDelImg{
+    background-color: white;
+    color: rgb(0, 166, 255);
+    border: none;
+    font-size: 20px;
+    max-width: 25px;
+    margin-top: 5px;
+}
+.btnDelImg:hover{
+ background-color: white;
+ color: blue;
+}
+.divEachImgdel{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+}
+
+
+@media (max-width: 800px) { 
+    .divImgDel{
+        grid-template-columns: auto auto;
+    
+    }
+.imgDelete{
+    max-width: 100%;
+}
+}
+/* @media (max-width: 500px) { 
+
+.divImgDel{
+    grid-auto-rows: 200px;}
+} */
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+.BtnPdf{
+background-color: white;
+border: none;
+max-width: 30px;
+margin: 0;
+}
+.BtnPdf:hover{    
+background-color: white;
+}
+
+.PdfIcon{
+color: rgb(0, 145, 255);
+font-size: 25px;
+}
+.PdfIcon:hover{
+color: blue;
+}
+.PrintIcon{
+    color: rgb(0, 145, 255);
+    font-size: 30px;
+    }
+.PrintIcon:hover{
+ color: blue;
+}
+
+
+.PdfComp{
+/* display: inline-block; */
+float: right;
+margin: 10px;
+}

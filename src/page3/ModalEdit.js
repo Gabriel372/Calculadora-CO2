@@ -11,7 +11,6 @@ setClientUpdt({...props.Clientedit})
   }, [props.Clientedit]);
 
 const clickClose = () => {
-  console.log(ClientUpdt);
   props.clickSearch(); 
     setClientUpdt({...props.Clientedit})
     setInterruptMsg(false)

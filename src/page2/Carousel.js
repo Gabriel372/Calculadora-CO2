@@ -1,20 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import style from './Carousel.module.css'
-import rj from '../images/rjImg.jpg'
-import sp from '../images/spImg.jpg'
-import angra from '../images/angraImg.webp'
+import ModEditImg from './ModEditImg'
+import DownLdImg from './DownLdImg'
 
 const Carousel = () => {
-  useEffect(() => {
-    const interval = setInterval(() => {
-      slider.slickNext();
-    }, 4000);
+  const [BoxImg, setBoxImg] = useState([]);
 
-    return () => clearInterval(interval);
-  }, []);
+  useEffect(() => {
+    const interval = setInterval(() => { slider.slickNext(); }, 4000);
+return () => clearInterval(interval);
+  }, [BoxImg]);
 
   const settings = {
     dots: false,
@@ -29,18 +27,19 @@ const Carousel = () => {
 
   let slider;
 
-  return (
+  return (<div>
     <Slider ref={(c) => (slider = c)} {...settings} className={style.container}>
-      <div >
-        <img src={sp} alt="Imagem 1"className={style.imgCarousel}/>
-      </div>
-      <div>
-        <img src={angra} alt="Imagem 2" className={style.imgCarousel}/>
-      </div>
-      <div>
-        <img src={sp}alt="Imagem 3" className={style.imgCarousel}  />
-      </div>
+      {BoxImg.map((imageUrl, index) => (
+        <div key={index}>
+          <img src={imageUrl} alt={`Imagem ${index + 1}`} className={style.imgCarousel} />
+        </div>
+      ))}
+
     </Slider>
+    <ModEditImg setBoxImg={setBoxImg} BoxImg={BoxImg} />
+<DownLdImg setBoxImg={setBoxImg}/>
+    </div>
+  
   );
 };
 

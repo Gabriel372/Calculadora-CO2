@@ -1,6 +1,7 @@
 import style from './SearchPrjctClnt.module.css'
 import { useState,useEffect } from 'react'
 import NavbarLoged from '../page3/NavbarLoged'
+import GeneratePdf from './GeneratePdf'
 
 function SearchPrjctClnt() {
 const [Boxclient,setBoxclient] = useState([]) //cx de clientes
@@ -18,8 +19,7 @@ fetch('http://191.252.38.35:8080/api/clientes/listarPorProjeto?email=marcos@gmai
      .then((response) => response.json())
    .then((data) => {
     if(data.length === 0){setBoxclient([]) ; setEmptyBoxCl(true) ;console.log('cx de relatorio vazia',data);}
-    else {console.log('relatorio recebido', data);setEmptyBoxCl(false)
-    setBoxclient(data);}}  )
+    else {setEmptyBoxCl(false) ; setBoxclient(data);}}  )
      .catch((error) => { console.log('erro', error);  }); 
  } 
  else{setBoxclient([]);setEmptyBoxCl(false) ;setTimeout(() => {alert('Preencha o formulário')  },50) ;}
@@ -33,7 +33,12 @@ const DateConverted = `${day}/${month}/${year}`; return DateConverted; }
 return <div>
 <NavbarLoged/> 
 <div className={style.container}>
-    <h2 className={style.searcH2}>Filtro por projeto clientes cadastrados</h2>
+
+<div className={style.divTitleAllPrjct}>
+    <h2 className={style.titH2}>Filtro por projeto clientes cadastrados</h2>
+    {Boxclient.length > 0 && <GeneratePdf />}
+    </div>
+
 
 <div><input className={style.cpfInput} type='text' onChange={ChangeSearch}  autoFocus value={ChangeInp} placeholder='Digite o projeto'/>    
 <button onClick={clickSearch}>Buscar</button></div>   

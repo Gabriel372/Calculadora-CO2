@@ -45,8 +45,7 @@ const [IntrrptResgist,setIntrrptResgist] = useState(false)
           if (!response.ok) {
           throw new Error(`Erro na solicitação: ${response.statusText}`); }
           return response.json(); })
-          .then((data) =>  { console.log('sucesso no post',data);SaveApiWater() ; setIntrrptResgist(false) ;
-        })
+          .then(() =>  { SaveApiWater() ; setIntrrptResgist(false) ;  })
           .catch((error) => console.log('erro ao postar emissao',error))
 
         const SaveApiWater = () => { 
@@ -60,9 +59,8 @@ const [IntrrptResgist,setIntrrptResgist] = useState(false)
             if (!response.ok) {
             throw new Error(`Erro na solicitação: ${response.statusText}`); }
             return response.json(); })
-            .then((data) =>  { console.log('sucesso no post',data);SaveApiEnElctr() })
-    .catch((error) => console.log('erro ao postar emissao',error))
-        }
+            .then(() =>  { SaveApiEnElctr() })
+    .catch((error) => console.log('erro ao postar emissao',error)   )   }
   
         const SaveApiEnElctr = () => { 
           const emEnergy = {tipoEmissao:"energiaeletrica",nome:Name,cpf:Cpf,mes:Month,ano:Year,gasto:Cons_eletric,consumo:0,taxaDeReducao:0}
@@ -75,9 +73,8 @@ const [IntrrptResgist,setIntrrptResgist] = useState(false)
             if (!response.ok) {
             throw new Error(`Erro na solicitação: ${response.statusText}`); }
             return response.json(); })
-            .then((data) =>  { console.log('sucesso no post',data);SaveApiResd()})
-            .catch((error) => console.log('erro ao postar emissao',error))
-        }
+            .then(() =>  { SaveApiResd()})
+            .catch((error) => console.log('erro ao postar emissao',error)) }
         
         const SaveApiResd = () => { 
           const emResidue = {tipoEmissao:"residuos",nome:Name,cpf:Cpf,mes:Month,ano:Year,gasto:Gen_waste,consumo:0,taxaDeReducao:0}
@@ -90,10 +87,8 @@ const [IntrrptResgist,setIntrrptResgist] = useState(false)
             if (!response.ok) {
             throw new Error(`Erro na solicitação: ${response.statusText}`); }
             return response.json(); })
-            .then((data) =>  { console.log('sucesso no post',data);SaveApiConsMonth()
-          } )
-            .catch((error) => console.log('erro ao postar emissao',error))
-        }
+            .then(() =>  { ;SaveApiConsMonth() } )
+            .catch((error) => console.log('erro ao postar emissao',error))  }
 
         const SaveApiConsMonth = () => {  
 const consumMonth={nome:Name,cpf:Cpf,projeto:Project,mes:Month,ano:Year,consumo:0,taxaDeReducao:0,beneficio:0} 
@@ -105,65 +100,40 @@ const consumMonth={nome:Name,cpf:Cpf,projeto:Project,mes:Month,ano:Year,consumo:
             if (!response.ok) {
             throw new Error(`Erro na solicitação: ${response.statusText}`); }
             return response.json(); })
-            .then((data) =>  { console.log('sucesso no post conumo mensal',data);CleanValue()
+            .then(() =>  { ;CleanValue()
             setInterruptMsg(true);setTimeout(() => {setInterruptMsg(false)} ,8000) })
-            .catch((error) => {console.log('erro ao postar cons. mensal',error);console.log(consumMonth);  }) 
-        }
+            .catch((error) => {console.log('erro ao postar cons. mensal',error);console.log(consumMonth);  })  } }
+      else {alert('Preencha os formularios');  }} //CLICK REGISTER
   
-      }
-      else {alert('Preencha os formularios');
-
-    }} //CLICK REGISTER
-  
-const changeData = (e) =>{ setData(e.target.value);console.log(Data);}
-const changePopulation = (e) =>{ setPopulation(e.target.value) }
-const changeT_gascpf = (e) =>{ setT_gascpf(e.target.value) }
-const changeM_gas = (e) =>{ setM_gas(e.target.value) }
-const changeT_watercpf = (e) =>{ setT_watercpf(e.target.value) }
-const changeM_water = (e) =>{ setM_water(e.target.value) }
-const changeT_cpf = (e) =>{ setT_cpf(e.target.value) }
-const changeM_energy = (e) =>{ setM_energy(e.target.value) }
-const changePhone = (e) =>{ setPhone(e.target.value) }
-const changeEmail = (e) =>{ setEmail(e.target.value) }
-const changeAdress = (e) =>{ setAdress(e.target.value) }
-const changeCpf = (e) =>{ setCpf(e.target.value) }
-const changeName = (e) =>{ setName(e.target.value) }
-const changeProject = (e) =>{ setProject(e.target.value) }
-const changeCons_eletric = (e) =>{ setCons_eletric(e.target.value) }
-const changeCons_water = (e) =>{ setCons_water(e.target.value) }
-const changeGen_waste = (e) =>{ setGen_waste(e.target.value) }//geraçao de residuos
-
-const CleanValue = () =>{ setPopulation('');setT_gascpf('');setM_gas('');setName('')
+function CleanValue() { setPopulation('');setT_gascpf('');setM_gas('');setName('')
 setT_watercpf('');setT_cpf('');setM_energy('');setPhone('');setData('');
 setEmail('');setAdress('');setCpf('');setProject('');setCons_water('');
-setCons_eletric('');setGen_waste('');setM_water(''); setGen_waste('') ;setName('');
-
-}
+setCons_eletric('');setGen_waste('');setM_water(''); setGen_waste('') ;setName(''); }
 
 return <div> <NavbarLoged/>
 <div className={style.container}>
    
     <h2>Cadastrado do cliente</h2>
 <div className={style.squareLogin}>
-<label>Data de cadastro:<input className={style.inputDate} type="date" onChange={changeData} value={Data}/>
+<label>Data de cadastro:<input className={style.inputDate} type="date" onChange={(e)=> setData(e.target.value) } value={Data}/>
 </label>
-<input  type="text" placeholder='Projeto' onChange={changeProject} value={Project}/>
-<input  type="text" placeholder='Nome completo' onChange={changeName} value={Name}/>
-<input  type="number" placeholder='Cpf' onChange={changeCpf} value={Cpf}/>
-<input  type="text" placeholder='Endereço' onChange={changeAdress} value={Adress}/>
-<input  type="e-mail" placeholder='Email' onChange={changeEmail} value={Email}/>
-<input  type="number"  placeholder='Telefone' onChange={changePhone} value={Phone}/>
-<input  type="number"  placeholder='Código do cliente / energia' onChange={changeM_energy} value={M_energy}/>
-<input  type="number" placeholder='Titular de energia do cpf' onChange={changeT_cpf} value={T_cpf}/>
-<input  type="number" placeholder='Código do cliente / água' onChange={changeM_water} value={M_water}/>
-<input  type="number" placeholder='Titular de água do cpf' onChange={changeT_watercpf} value={T_watercpf}/>
-<input  type="number" placeholder='Código do cliente / gás' onChange={changeM_gas} value={M_gas}/>
-<input type="number" placeholder='Titular de gás do cpf' onChange={changeT_gascpf} value={T_gascpf}/>
-<input type="number" placeholder='Nº de habitantes na residência' onChange={changePopulation} value={Population}/>
-{/* <div><hr/></div> */}
-<input className={style.inputMarginT} type="number" placeholder='Consumo de energia elétrica' onChange={changeCons_eletric} value={Cons_eletric}/>
-<input type="number" placeholder='Consumo de água' onChange={changeCons_water} value={Cons_water}/>
-<input className={style.inputMarginB} type="number" placeholder='Geração de residuos' onChange={changeGen_waste} value={Gen_waste}/>
+<input  type="text" placeholder='Projeto' onChange={(e)=> setProject(e.target.value) } autoComplete="on" value={Project}/>
+<input  type="text" placeholder='Nome completo' onChange={(e)=> setName(e.target.value) } value={Name}/>
+<input  type="number" placeholder='Cpf' onChange={(e)=> setCpf(e.target.value) } value={Cpf}/>
+<input  type="text" placeholder='Endereço' onChange={(e)=> setAdress(e.target.value) } value={Adress}/>
+<input  type="e-mail" placeholder='Email' onChange={(e)=> setEmail(e.target.value) } value={Email}/>
+<input  type="number"  placeholder='Telefone' onChange={(e)=> setPhone(e.target.value) } value={Phone}/>
+<input  type="number"  placeholder='Código do cliente / energia' onChange={(e)=> setM_energy(e.target.value) } value={M_energy}/>
+<input  type="number" placeholder='Titular de energia do cpf' onChange={(e)=> setT_cpf(e.target.value) } value={T_cpf}/>
+<input  type="number" placeholder='Código do cliente / água' onChange={(e)=> setM_water(e.target.value) }value={M_water}/>
+<input  type="number" placeholder='Titular de água do cpf' onChange={(e)=> setT_watercpf(e.target.value) } value={T_watercpf}/>
+<input  type="number" placeholder='Código do cliente / gás' onChange={(e)=> setM_gas(e.target.value) } value={M_gas}/>
+<input type="number" placeholder='Titular de gás do cpf' onChange={(e)=> setT_gascpf(e.target.value) } value={T_gascpf}/>
+<input type="number" placeholder='Nº de habitantes na residência' onChange={(e)=> setPopulation(e.target.value) } value={Population}/>
+<input className={style.inputMarginT} type="number" placeholder='Consumo de energia elétrica' onChange={(e)=> setCons_eletric(e.target.value) } value={Cons_eletric}/>
+<input type="number" placeholder='Consumo de água' onChange={(e)=> setCons_water(e.target.value) } value={Cons_water}/>
+<input className={style.inputMarginB} type="number" placeholder='Geração de residuos' onChange={(e)=> setGen_waste(e.target.value) } value={Gen_waste}/>
+
 <p className={InterruptMsg ? style.msgVisible : style.msgHidden}>Cadastrado com sucesso !</p>
 <button type='button' onClick={registerClick}>Enviar</button>
 <button className={style.btnView} type='button'>Ver resultado</button>

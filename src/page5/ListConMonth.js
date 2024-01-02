@@ -2,6 +2,7 @@ import style from './ListConMonth.module.css'
 // import DropDwReport from './DropDwReport'
 import NavbarLoged from '../page3/NavbarLoged'
 import { useState } from 'react'
+import GeneratePdf from './GeneratePdf'
 
 function ListConMonth() {
 const admStorage = JSON.parse(sessionStorage.getItem('admStorage'))
@@ -60,7 +61,11 @@ return <div>
     <NavbarLoged/>
 <div className={style.container}>
 
-    <h2 className={style.H2ListCon}>Filtro por projeto ou cpf lista de consumo mensal</h2>
+<div className={style.divTitleAllPrjct}>
+    <h2 className={style.titH2}>Filtro por projeto ou cpf lista de consumo mensal</h2>
+{BoxClient.length > 0 && <GeneratePdf />}
+</div>
+
     <input className={style.cpfInput} type='text' onChange={changeProjct}  autoFocus value={InpValue} placeholder='Digite o projeto ou CPF'/>    
 <button onClick={clickSearch}>Buscar</button>
 

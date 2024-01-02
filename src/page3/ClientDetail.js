@@ -6,7 +6,7 @@ function ClientDetail(props) {
     const DateConverted = `${day}/${month}/${year}`; return DateConverted; }
 
     return (<div className={style.clientCard}>
-     <div>
+     <div className={style.clientInfo}>
     <p>CPF: {props.client.cpf}</p><p> Nome: {props.client.nome}</p><p>Projeto: {props.client.projeto}</p>
     <p>Data de cadastro: {Convert(props.client.data)}</p>
     <p>Email: {props.client.email}</p>
@@ -21,28 +21,56 @@ function ClientDetail(props) {
     <p>Titular de gás cpf: {props.client.titularGasCpf}</p>
     </div>   
 <div className={style.emition}>
-    <h4>Emissões</h4>
+    <h4 className={style.H4ClientDet}>Emissões</h4>
+    
 <div>
- {props.client.emissoes !== '' ? 
- <div>
-<p>Ano: {props.client.emissoes.agua[0].ano}</p>
-<p>Tipo de Emissao: Água</p>
-<p>Mês: {props.client.emissoes.agua[0].mes}</p>
-<p>Gasto: {props.client.emissoes.agua[0].gasto} m³</p>
-<p className={style.pMbCliDet}>Gerou: {props.client.emissoes.agua[0].consumo} kg CO² e</p>
 
-<p>Tipo de Emissao: Energia elétrica</p>
-<p>Mês: {props.client.emissoes.energiaeletrica[0].mes}</p>
-<p>Gasto: {props.client.emissoes.energiaeletrica[0].gasto} kwh</p>
-<p className={style.pMbCliDet}>Gerou: {props.client.emissoes.energiaeletrica[0].consumo} kg CO² e</p>
-
-<p>Tipo de Emissao: Resíduos</p>
-<p>Mês: {props.client.emissoes.residuos[0].mes}</p>
-<p>Emitiu: {props.client.emissoes.residuos[0].gasto} kg</p>
-<p>Gerou: {props.client.emissoes.residuos[0].consumo} kg CO² e</p>
+<div>
+<h4 className={style.H4ClientDet}>Agua</h4>
+<div className={style.dadEachEmit}>
+{props.client.emissoes.agua.map(agua => (
+<div className={style.divEachEmit} key={agua.id}>
+<p className={style.pModText}>Ano: {agua.ano}</p>
+<p className={style.pModText}>Mês: {agua.mes}</p>
+<p className={style.pModText}>Gasto: {agua.gasto} m³</p>
+<p className={style.pModText}>Gerou: {agua.consumo} kg CO² e</p>
+{/* <button className={style.btnEditEmWater} onClick={ () => clickEditEmtWater(agua)}>Editar</button> */}
+</div>))}
+</div> 
 </div>
-: '' }
- </div> 
+
+
+<div>
+<h4 className={style.H4ClientDet}>Energia elétrica</h4> 
+<div className={style.dadEachEmit}>
+{props.client.emissoes.energiaeletrica.map(energiaeletrica => (
+<div className={style.divEachEmit} key={energiaeletrica.id}>
+<p className={style.pModText}>Ano: {energiaeletrica.ano}</p>
+<p className={style.pModText}>Mês: {energiaeletrica.mes}</p>
+<p className={style.pModText}>Gasto: {energiaeletrica.gasto} kwh</p>
+<p className={style.pModText}>Gerou: {energiaeletrica.consumo} kg CO² e</p>
+{/* <button className={style.btnEditEmWater} onClick={ () => clickEditEmtEnergy(energiaeletrica)}>Editar</button> */}
+</div>))}
+</div> 
+
+</div> 
+
+<div>
+<h4 className={style.H4ClientDet}>Resíduos</h4>  
+<div className={style.dadEachEmit}>
+{props.client.emissoes.residuos.map(residuos => (
+<div className={style.divEachEmit} key={residuos.id}>
+<p className={style.pModText}>Ano: {residuos.ano}</p>
+<p className={style.pModText}>Mês: {residuos.mes}</p>
+<p className={style.pModText}>Emitiu: {residuos.gasto} kg</p>
+<p className={style.pModText}>Gerou: {residuos.consumo} kg CO² e</p>
+{/* <button className={style.btnEditEmWater} onClick={ () => clickEdtEmtResd(residuos)}>Editar</button> */}
+</div>))}
+</div> 
+
+</div> 
+
+</div>
 
  </div> 
 

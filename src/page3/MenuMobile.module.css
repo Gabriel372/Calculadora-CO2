@@ -1,0 +1,78 @@
+.MobileContainer{
+ /* visibility: hidden;  */
+display: none;
+}
+.btnMobile{
+background-color: white;  
+color: rgb(0, 145, 255);
+border: none;
+font-size: 25px;  
+margin: 0;
+margin-right: 15px;
+padding: 0;
+max-width: 30px;
+float: right;
+}
+.LiBtn{
+display: flex;
+justify-content: end;   
+}
+.btnMobile:hover{
+background-color: white;   
+color: blue; 
+
+}
+.menuCollapse{display: none;}
+.menuShow{display: block; 
+z-index: 1;
+/* position: absolute; */
+position: absolute;
+
+/* background-color: rgb(0, 0, 0, 0.5); */
+left: 0;
+top: 65px;
+width: 100%;
+height: 700px;
+}
+.MobileUl{
+    z-index: 2;
+padding: 5px;    
+ text-align: left;   
+display: block;
+background-color: white;
+position: relative;
+right: 0px;
+/* margin-right: 5px; */
+
+top: 0px;
+min-width: 250px;
+margin: 0 0 0 5px;
+border: 1px solid rgb(230, 229, 229);
+border-radius: 5px;
+}
+.MobileUl >*{
+font-size: 20px;
+display: block;
+margin-bottom: 5px;
+width: 100%;
+}
+.MobileUl >* li{
+    font-size: 20px;
+    display: block;
+    margin-bottom: 8px;
+    width: 100%;
+    }
+li >*a{
+        display: block;
+        width: 100%;
+ }
+
+
+@media (max-width: 800px) { 
+    .MobileContainer{
+       display: block;
+       }
+
+}
+
+

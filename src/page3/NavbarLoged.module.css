@@ -13,7 +13,7 @@
     .container{
     border-bottom: 1px solid rgb(219, 219, 219);  
     }
-    ul{
+    .DesktopUl{
     list-style: none;   
     display: flex;
     flex-direction: row; 
@@ -31,15 +31,20 @@
     }
     img{
     margin-left: 4px;}
+.MobileUl{
+display: block;
+
+}
+
 
     @media (max-width: 500px) {
     img{
-    width: 80px;        }
+    width: 110px;        }
     li{
     font-size: 10px;  
     margin-right: 5px;    
   }
-    ul{margin: 0 10px 0 0;}
+  .DesktopUl{margin: 0 10px 0 0;}
     .nav{max-height: 60px;
  
     }
@@ -50,5 +55,7 @@
     @media (max-width: 800px) {
     .nav{
     max-height: 80px;        }   
+    .DesktopUl{display: none;}
+
     }
     

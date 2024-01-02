@@ -1,6 +1,6 @@
 .container{
     max-width: 1100px;
-    height: 700px;
+    min-height: 850px;
     margin: auto;
     display: flex;
     justify-content: flex-start;
@@ -13,6 +13,7 @@
     display: block;
     padding: 15px;
     border-radius: 8px;
+    margin: 0 15px 10px 15px;
     }
     input{
     width: 100%;    
@@ -65,9 +66,6 @@ font-size: 20px;
 .inputDate{
 max-width: 180px;
 }
-@media (max-width: 500px) {
-label{font-size: 16px;  }  
-      }
 .msgVisible{
 color: green;
 font-size: 18px;
@@ -79,3 +77,7 @@ visibility: visible;
 .msgHidden{
 visibility: hidden;    
 }
+
+@media (max-width: 500px) {
+    label{font-size: 16px;  }  
+          }
