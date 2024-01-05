@@ -36,9 +36,6 @@ const clickInsert = () => {
     const emWater = {tipoEmissao:"agua",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Cons_water,consumo:0,taxaDeReducao:0}  ;
     const emResidue = {tipoEmissao:"residuos",nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,mes:Month,ano:Year,gasto:Gen_waste,consumo:0,taxaDeReducao:0}  ;
     
-//          const emWater = {tipoEmissao:"agua",nome:Name,cpf:Cpf,mes:Month,ano:Year,gasto:Cons_water,consumo:0,taxaDeReducao:0}  ;
-
-
         fetch(`http://191.252.38.35:8080/api/emissoes/salvar?email=${admStorage.email}&senha=${admStorage.senha}`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -80,8 +77,6 @@ const clickInsert = () => {
 
 
  const SaveApiConsMonth = () => {  
-
-//const consumMonth={nome:Name,cpf:Cpf,projeto:Project,mes:Month,ano:Year,consumo:0,taxaDeReducao:0,beneficio:0} 
 
   const consumMonth={nome:props.ClientEmt.nome,cpf:props.ClientEmt.cpf,projeto:props.ClientEmt.projeto,mes:Month, ano:Year,consumo:0,taxaDeReducao:0,beneficio:0} 
   fetch(`http://191.252.38.35:8080/api/consumoMensal/criaConsumoMensal?email=${admStorage.email}&senha=${admStorage.senha}`,{

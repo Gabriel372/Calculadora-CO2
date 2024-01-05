@@ -8,7 +8,7 @@ margin: auto;
 height: 100%;
 }
 .cpfInput{
-max-width: 200px;
+max-width: 230px;
 border-radius: 3px;
 margin-right: 5px;
 margin-bottom: 10px;
@@ -111,7 +111,7 @@ margin-left: 10px;
     .ul {
         grid-template-columns: 400px;
       }
-    
+      .cpfInput{max-width: 210px;}
     } 
     
     @media (max-width: 400px) {
