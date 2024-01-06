@@ -1,4 +1,7 @@
+Um sistema para gerar relatório de emissão de co² de cada cliente cadastrado,
+funções:cadastrar clientes,cadastrar administradores,inserir emissoes mensais de cliente,relátorios com co² gerado
 
+Video:
 https://github.com/Gabriel372/Calculadora2/assets/124525153/a7ca0334-1c08-4d58-847a-5df9cb83db2f
 
 # Getting Started with Create React App
